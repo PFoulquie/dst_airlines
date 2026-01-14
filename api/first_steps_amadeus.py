@@ -81,10 +81,6 @@ with open('data/amadeus_sample_flight_offers_search.pkl', 'wb') as f:
 with open('data/amadeus_sample_flight_offers_search.pkl', 'rb') as f:
     sample_flight_offers_search = pickle.load(f)
 
-
-
-
-
 df_sample_flight_offers_search = pd.concat([pd.DataFrame.from_dict(f_['itineraries'][0]['segments']) for f_ in sample_flight_offers_search])
 df_sample_flight_offers_search.iloc[0]
 
