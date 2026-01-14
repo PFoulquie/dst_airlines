@@ -9,6 +9,7 @@
 # Connect 
 # Install the Python library from https://pypi.org/project/amadeus
 from amadeus import Client, ResponseError
+import pickle
 # a ne pas laisser dans en dur par la suite 
 amadeus = Client(
     client_id='sDscUz9lwUhiKcHjxZwYLZlzXYQUXyDZ',
@@ -25,8 +26,14 @@ try:
 except ResponseError as error:
     raise error
 sample_airline_routes = response.data
+
 with open('data/amadeus_sample_airline_routes.pkl', 'wb') as f:
     pickle.dump(sample_airline_routes, f)
+
+
+with open('data/amadeus_sample_airline_routes.pkl', 'rb') as f:
+    sample_airline_routes = pickle.load(f)
+
 
 
 # Airport routes 
@@ -44,6 +51,8 @@ sample_airport_routes = response.data
 with open('data/amadeus_sample_airport_routes.pkl', 'wb') as f:
     pickle.dump(sample_airport_routes, f)
 
+with open('data/amadeus_sample_airport_routes.pkl', 'rb') as f:
+    sample_airport_routes = pickle.load(f)
 
 
 # Flight delay prediction 
