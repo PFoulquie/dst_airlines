@@ -1,0 +1,27 @@
+,style,explode,name,description,in,required,examples.startrange.value,schema.format,schema.type,examples.endrange.value,examples.movementtype.value,schema.enum,examples.timeorigintype.value,examples.timetype.value,examples.origin.value,examples.departurecity.value,examples.destinationairport.value,examples.arrivalCity.value,examples.host.value,examples.carriercode.value,schema.items.type,examples.operatingairlinecode.value,examples.flightnumber.value,examples.suffix.value,examples.aircraftregistration.value,examples.Aircrafttype.value,examples.pagesize.value,examples.pagenumber.value,examples.servicetype.value,examples.apikey.value
+0,form,True,startRange,Start from this date time,query,True,2023-12-31T09:00:00.000Z,date-time,string,,,,,,,,,,,,,,,,,,,,,
+1,form,True,endRange,End on this date time,query,True,,date-time,string,2023-12-31T23:59:59.000Z,,,,,,,,,,,,,,,,,,,,
+2,form,True,movementType,"Focus (Departure or Arrival) for the flights to be found;
+used for selection of departure or arrival time within range
+**Sorting is based on movementType
+A = Arrival, D = Departure
+If D- flights will be sorted by scheduleDeparture time
+If A- flights will be sorted by scheduleArrivaltime",query,False,,,string,,A,"['A', 'D']",,,,,,,,,,,,,,,,,,
+3,form,True,timeOriginType,"S = Scheduled, M = Modified, I = Internal, P = Public",query,False,,,string,,,"['S', 'M', 'I', 'P']",S,,,,,,,,,,,,,,,,,
+4,form,True,timeType,"Type of time used in startRange and endRange
+U = UTC time, L = Local Time",query,False,,,string,,,"['U', 'L']",,U,,,,,,,,,,,,,,,,
+5,form,True,origin,Departure airport,query,False,,,string,,,,,,AMS,,,,,,,,,,,,,,,
+6,form,True,departureCity,IATA departure city code,query,False,,,string,,,,,,,DXB,,,,,,,,,,,,,,
+7,form,True,destination,Destination airport,query,False,,,string,,,,,,,,AMS,,,,,,,,,,,,,
+8,form,True,arrivalCity,Filter by airport code of arrival city,query,False,,,string,,,,,,,,,DXB,,,,,,,,,,,,
+9,form,True,consumerHost,The information about the system from which the request is launched,query,False,,,string,,,,,,,,,,KL,,,,,,,,,,,
+10,form,True,carrierCode,Airline code (2-pos IATA and 3-pos ICAO),query,False,,,array,,,,,,,,,,,"KL, AF",string,,,,,,,,,
+11,form,True,operatingAirlineCode,Operating airline code (2-pos IATA and 3-pos ICAO),query,False,,,array,,,,,,,,,,,,string,KL,,,,,,,,
+12,form,True,flightNumber,Filter by flight number,query,False,,,string,,,,,,,,,,,,,,0202,,,,,,,
+13,form,True,operationalSuffix,"Operational suffix, indicates if a flight has been advanced or delayed to the previous or next day",query,False,,,string,,,"['A', 'D']",,,,,,,,,,,,"D,A,R,S,T,U,V,W",,,,,,
+14,form,True,aircraftRegistration,Registration code of the aircraft,query,False,,,string,,,,,,,,,,,,,,,,PHBEF,,,,,
+15,form,True,aircraftType,Filter by a type of aircraft,query,False,,,string,,,,,,,,,,,,,,,,,737,,,,
+16,form,True,pageSize,Indicates the number of items per page,query,False,,int32,integer,,,[None],,,,,,,,,,,,,,,100,,,
+17,form,True,pageNumber,"Indicates the page number you are requesting, the first page is page 0. If it's not provided first page will be returned",query,False,,int32,integer,,,,,,,,,,,,,,,,,,,1,,
+18,form,True,serviceType,IATA service type code,query,False,,,array,,,,,,,,,,,,string,,,,,,,,J,
+19,simple,False,API-Key,Fill in API key for consumption,header,True,,,string,,,,,,,,,,,,,,,,,,,,,Your API Key

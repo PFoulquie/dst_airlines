@@ -1,0 +1,9 @@
+,0
+code,string
+flightScheduleDate,2019-08-24
+marketingFlightNumber,0
+operationalSuffix,string
+saleableVersion,string
+type,string
+airline.code,string
+airline.name,string

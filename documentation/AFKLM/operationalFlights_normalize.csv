@@ -1,0 +1,35 @@
+,0
+baseProvinceIndicator,string
+codeShareRelations,"[{'airline': {'code': 'string', 'name': 'string'}, 'code': 'string', 'flightScheduleDate': '2019-08-24', 'marketingFlightNumber': 0, 'operationalSuffix': 'string', 'saleableVersion': 'string', 'type': 'string'}]"
+errors,"[{'action': {'hostPrefix': 'string', 'href': 'string', 'profile': 'string', 'templated': True, 'type': 'string'}, 'code': 'string', 'description': 'string', 'name': 'string', 'severity': 'ERROR'}]"
+flightDetailsBlocked,True
+flightLegs,"[{'aircraft': {'cabinCrewEmployer': 'string', 'cockpitCrewEmployer': 'string', 'operationalConfiguration': 'string', 'ownerAirlineCode': 'string', 'ownerAirlineName': 'string', 'physicalFreightConfiguration': 'string', 'physicalPaxConfiguration': 'string', 'registration': 'string', 'saleableConfiguration': 'string', 'subFleetCodeId': 'string', 'typeCode': 'string', 'typeName': 'string', 'wifiEnabled': 'string'}, 'arrivalDateTimeDifference': 'string', 'arrivalInformation': {'airport': {'city': {'code': 'string', 'country': {'areaCode': 'string', 'code': 'string', 'euCountry': 'string', 'euroCountry': 'string', 'name': 'string', 'nameLangTranl': 'string'}, 'name': 'string', 'nameLangTranl': 'string'}, 'code': 'string', 'location': {'altitude': 0, 'latitude': 0, 'longitude': 0}, 'name': 'string', 'nameLangTranl': 'string', 'places': {'aerogareCode': 'string', 'arrivalHall': ['string'], 'arrivalPositionPier': 'string', 'arrivalPositionTerminal': 'string', 'arrivalTerminal': 'string', 'baggageBelt': ['string'], 'disembarkingAerogare': 'string', 'disembarkingBusQuantity': 'string', 'disembarkingContactType': 'string', 'firstBagOnBeltTime': '2019-08-24T14:15:22Z', 'flightSecurityLevel': 'string', 'gateNumber': ['string'], 'lastBagOnBeltTime': '2019-08-24T14:15:22Z', 'parkingPosition': 'string', 'parkingPositionCustomStatus': 'string', 'parkingPositionType': 'string', 'pierCode': 'string', 'terminalCode': 'string'}}, 'landingRunwayCode': 'string', 'priorityIndicator': 'string', 'times': {'actual': '2019-08-24T14:15:22Z', 'actualTakeOffTime': '2019-08-24T14:15:22Z', 'actualTouchDownTime': '2019-08-24T14:15:22Z', 'aircraftOnPosition': '2019-08-24T14:15:22Z', 'departureSlotTime': '2019-08-24T14:15:22Z', 'endOfHandling': '2019-08-24T14:15:22Z', 'estimated': {'origin': 'string', 'type': 'string', 'value': '2019-08-24T14:15:22Z'}, 'estimatedArrival': '2019-08-24T14:15:22Z', 'estimatedInternal': '2019-08-24T14:15:22Z', 'estimatedPublic': '2019-08-24T14:15:22Z', 'estimatedTakeOffTime': '2019-08-24T14:15:22Z', 'estimatedTouchDownTime': '2019-08-24T14:15:22Z', 'latestPublished': '2019-08-24T14:15:22Z', 'modified': '2019-08-24T14:15:22Z', 'scheduled': '2019-08-24T14:15:22Z', 'targetOffBlock': '2019-08-24T14:15:22Z', 'targetStartupApprovalTime': '2019-08-24T14:15:22Z'}}, 'completionPercentage': 'string', 'departureDateTimeDifference': 'string', 'departureInformation': {'airport': {'city': {'code': 'string', 'country': {'areaCode': 'string', 'code': 'string', 'euCountry': 'string', 'euroCountry': 'string', 'name': 'string', 'nameLangTranl': 'string'}, 'name': 'string', 'nameLangTranl': 'string'}, 'code': 'string', 'location': {'altitude': 0, 'latitude': 0, 'longitude': 0}, 'name': 'string', 'nameLangTranl': 'string', 'places': {'aerogareCode': 'string', 'boardingBusQuantity': 'string', 'boardingContactType': 'string', 'boardingPier': 'string', 'boardingTerminal': 'string', 'checkInAerogare': 'string', 'checkInZone': ['string'], 'departureTerminal': 'string', 'gateNumber': ['string'], 'parkingPosition': 'string', 'parkingPositionCustomStatus': 'string', 'parkingPositionType': 'string', 'pierCode': 'string', 'profileLocation': 'string', 'terminalCode': 'string'}}, 'priorityIndicator': 'string', 'takeOffRunwayCode': 'string', 'times': {'actual': '2019-08-24T14:15:22Z', 'actualTakeOffTime': '2019-08-24T14:15:22Z', 'actualTouchDownTime': '2019-08-24T14:15:22Z', 'aircraftOnPosition': '2019-08-24T14:15:22Z', 'departureSlotTime': '2019-08-24T14:15:22Z', 'endOfHandling': '2019-08-24T14:15:22Z', 'estimated': {'origin': 'string', 'type': 'string', 'value': '2019-08-24T14:15:22Z'}, 'estimatedArrival': '2019-08-24T14:15:22Z', 'estimatedInternal': '2019-08-24T14:15:22Z', 'estimatedPublic': '2019-08-24T14:15:22Z', 'estimatedTakeOffTime': '2019-08-24T14:15:22Z', 'estimatedTouchDownTime': '2019-08-24T14:15:22Z', 'latestPublished': '2019-08-24T14:15:22Z', 'modified': '2019-08-24T14:15:22Z', 'scheduled': '2019-08-24T14:15:22Z', 'targetOffBlock': '2019-08-24T14:15:22Z', 'targetStartupApprovalTime': '2019-08-24T14:15:22Z'}}, 'internalLegStatus': 'string', 'internalLegStatusArrFocus': True, 'irregularity': {'cancelled': 'string', 'delayCode': ['string'], 'delayDuration': ['string'], 'delayDurationArrival': 'string', 'delayDurationInternal': 'string', 'delayDurationPublic': 'string', 'delayInformation': [{'delayCode': 'string', 'delayDuration': 'string', 'delayReason': 'string', 'delayReasonCodePublic': 'string', 'delayReasonPublicLong': 'string', 'delayReasonPublicShort': 'string', 'delaySubCode': 'string'}], 'delayNextInfoDateTime': '2019-08-24T14:15:22Z', 'delayReason': ['string'], 'delayReasonCodePublic': ['string'], 'delayReasonPublic': ['string'], 'delayReasonPublicLangTransl': ['string'], 'delaySubCode': ['string'], 'divertedFrom': 'string', 'divertedTo': 'string', 'publicDisruptionReason': 'string', 'scheduledActionCode': 'string', 'scheduledChangeReason': 'string'}, 'legStatusInternal': 'string', 'legStatusInternalLangTransl': 'string', 'legStatusPublic': 'string', 'legStatusPublicLangTransl': 'string', 'passengerCustomsStatus': 'string', 'publishedStatus': 'string', 'scheduledFlightDuration': 'string', 'serviceType': 'string', 'serviceTypeName': 'string', 'status': 'string', 'statusName': 'string', 'timeToArrival': 'string', 'timeZoneDifference': 'string', 'trajectories': [{'aircraftPositionTime': '2019-08-24T14:15:22Z', 'location': {'altitude': 0, 'latitude': 0, 'longitude': 0}}]}]"
+flightNumber,0
+flightScheduleDate,2019-08-24
+flightStatusInternal,string
+flightStatusInternalLangTransl,string
+flightStatusPublic,string
+flightStatusPublicLangTransl,string
+haul,string
+id,string
+internalFlightStatus,string
+internalStatusArrFocus,True
+operationalSuffix,string
+route,['string']
+airline.code,string
+airline.name,string
+flightRelations.equivalentFlightData.airlineCode,string
+flightRelations.equivalentFlightData.flightNumber,string
+flightRelations.equivalentFlightData.flightScheduleDate,2019-08-24
+flightRelations.equivalentFlightData.id,string
+flightRelations.equivalentFlightData.operationalSuffix,string
+flightRelations.onwardFlightData.airlineCode,string
+flightRelations.onwardFlightData.flightNumber,string
+flightRelations.onwardFlightData.flightScheduleDate,2019-08-24
+flightRelations.onwardFlightData.id,string
+flightRelations.onwardFlightData.operationalSuffix,string
+flightRelations.previousFlightData.airlineCode,string
+flightRelations.previousFlightData.flightNumber,string
+flightRelations.previousFlightData.flightScheduleDate,2019-08-24
+flightRelations.previousFlightData.id,string
+flightRelations.previousFlightData.operationalSuffix,string
