@@ -1,0 +1,10 @@
+,0
+code,string
+description,string
+name,string
+severity,ERROR
+action.hostPrefix,string
+action.href,string
+action.profile,string
+action.templated,True
+action.type,string
