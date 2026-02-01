@@ -1,0 +1,47 @@
+{
+  "source": "Airlabs Schedules API (v9)",
+  "doc": "https://airlabs.co/docs/schedules",
+  "collected_at": "2026-01-31T00:00:00Z",
+  "note": "Extrait d'exemple (sanitisé). Les horaires peuvent être en timezone locale et/ou UTC selon les champs renvoyés.",
+  "response": [
+    {
+      "airline_iata": "AF",
+      "airline_icao": "AFR",
+      "flight_iata": "AF1234",
+      "flight_icao": "AFR1234",
+      "flight_number": "1234",
+      "dep_iata": "CDG",
+      "dep_icao": "LFPG",
+      "dep_time": "2026-01-31 10:30",
+      "dep_time_utc": "2026-01-31 09:30",
+      "arr_iata": "NCE",
+      "arr_icao": "LFMN",
+      "arr_time": "2026-01-31 12:00",
+      "arr_time_utc": "2026-01-31 11:00",
+      "status": "scheduled",
+      "duration": 90,
+      "dep_delayed": 0,
+      "arr_delayed": 0
+    },
+    {
+      "airline_iata": "KL",
+      "airline_icao": "KLM",
+      "flight_iata": "KL5678",
+      "flight_icao": "KLM5678",
+      "flight_number": "5678",
+      "dep_iata": "ORY",
+      "dep_icao": "LFPO",
+      "dep_time": "2026-01-31 14:15",
+      "dep_time_utc": "2026-01-31 13:15",
+      "arr_iata": "AMS",
+      "arr_icao": "EHAM",
+      "arr_time": "2026-01-31 15:55",
+      "arr_time_utc": "2026-01-31 14:55",
+      "status": "active",
+      "duration": 100,
+      "dep_delayed": 15,
+      "arr_delayed": 10
+    }
+  ]
+}
+

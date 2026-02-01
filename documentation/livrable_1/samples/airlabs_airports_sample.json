@@ -1,0 +1,32 @@
+{
+  "source": "Airlabs Airports API (v9)",
+  "doc": "https://airlabs.co/docs/airports",
+  "collected_at": "2026-01-31T00:00:00Z",
+  "note": "Extrait d'exemple (sanitisé). Les champs disponibles varient selon la couverture.",
+  "response": [
+    {
+      "name": "Paris Charles de Gaulle Airport",
+      "iata_code": "CDG",
+      "icao_code": "LFPG",
+      "lat": 49.009592,
+      "lng": 2.555675,
+      "country_code": "FR",
+      "city": "Paris",
+      "timezone": "Europe/Paris",
+      "runways": 8,
+      "is_international": 1
+    },
+    {
+      "name": "Nice Côte d'Azur Airport",
+      "iata_code": "NCE",
+      "icao_code": "LFMN",
+      "lat": 43.6584,
+      "lng": 7.2159,
+      "country_code": "FR",
+      "city": "Nice",
+      "timezone": "Europe/Paris",
+      "is_international": 1
+    }
+  ]
+}
+
