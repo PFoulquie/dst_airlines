@@ -1,0 +1,59 @@
+{
+  "source": "Air France-KLM Flight Status API (OpenData)",
+  "spec_in_repo": "documentation/AFKLM/features_getflights_AFKLM.json",
+  "note": "Extrait représentatif (sanitisé) basé sur les exemples collectés. La structure réelle est très riche et nested (legs, irrégularités, aéroports, horaires...).",
+  "operationalFlights": [
+    {
+      "flightNumber": 5222,
+      "flightScheduleDate": "2026-01-11",
+      "id": "20260111+DL+5222",
+      "haul": "MEDIUM",
+      "route": ["RDU", "EWR", "RDU"],
+      "airline": { "code": "DL", "name": "DELTA AIR LINES INC." },
+      "flightStatusPublic": "ARRIVED",
+      "flightLegs": [
+        {
+          "publishedStatus": "ARRIVED",
+          "departureInformation": {
+            "airport": {
+              "code": "RDU",
+              "name": "RALEIGH/DURHAM INTERNATIONAL AIRPORT",
+              "location": { "latitude": 35.8753, "longitude": -78.7819 }
+            },
+            "times": { "actual": "2026-01-11T17:07:00.000-05:00", "scheduled": "2026-01-11T17:13:00.000-05:00" }
+          },
+          "arrivalInformation": {
+            "airport": {
+              "code": "EWR",
+              "name": "NEWARK LIBERTY INTERNATIONAL AIRPORT",
+              "location": { "latitude": 40.6958, "longitude": -74.1717 }
+            },
+            "times": { "actual": "2026-01-11T18:54:00.000-05:00", "scheduled": "2026-01-11T19:08:00.000-05:00" }
+          },
+          "scheduledFlightDuration": "PT1H55M",
+          "departureDateTimeDifference": "PT-6M",
+          "arrivalDateTimeDifference": "PT-14M",
+          "irregularity": { "cancelled": "N", "delayInformation": [] }
+        }
+      ]
+    },
+    {
+      "flightNumber": 605,
+      "flightScheduleDate": "2026-01-11",
+      "id": "20260111+AF+0605",
+      "haul": "LONG",
+      "route": ["CAY", "FDF", "PTP"],
+      "airline": { "code": "AF", "name": "AIR FRANCE" },
+      "flightStatusPublic": "ARRIVED",
+      "flightLegs": [
+        {
+          "publishedStatus": "ARRIVED",
+          "departureInformation": { "airport": { "code": "CAY" }, "times": { "actual": "2026-01-11T19:52:00.000-03:00" } },
+          "arrivalInformation": { "airport": { "code": "FDF" }, "times": { "actual": "2026-01-11T21:05:00.000-04:00" } },
+          "irregularity": { "cancelled": "N", "delayInformation": [{ "delayCode": "02", "delayDuration": "0002" }] }
+        }
+      ]
+    }
+  ]
+}
+
