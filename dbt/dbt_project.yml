@@ -1,0 +1,20 @@
+name: 'dbt_airlines'
+version: '1.0.0'
+config-version: 2
+
+profile: 'dbt_airlines' 
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+models:
+  dbt_airlines:
+    2_silver:
+      +materialized: table
+      +schema: silver
+    3_gold:
+      +materialized: table
+      +schema: gold

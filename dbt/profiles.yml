@@ -1,0 +1,14 @@
+dbt_airlines:
+  outputs:
+    dev:
+      type: postgres
+      # On utilise les variables d'environnement
+      host: "{{ env_var('DB_HOST') }}"
+      user: "{{ env_var('DB_USER') }}"
+      password: "{{ env_var('DB_PASSWORD') }}"
+      port: "{{ env_var('DB_PORT') | int }}"
+      dbname: "{{ env_var('DB_NAME') }}"
+      schema: silver
+      threads: 4
+      connect_timeout: 10
+  target: dev

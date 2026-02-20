@@ -1,0 +1,60 @@
+[0m09:43:41.932226 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f33e43ee1e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f33e3528140>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f33e26e9e80>]}
+
+
+============================== 09:43:41.947033 | f7efa5d6-7681-44f9-9a9a-b304c0c1c6ce ==============================
+[0m09:43:41.947033 [info ] [MainThread]: Running with dbt=1.11.6
+[0m09:43:41.948692 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'invocation_command': 'dbt init dbt_airlines', 'log_cache_events': 'False', 'empty': 'None', 'use_colors': 'True', 'introspect': 'True', 'printer_width': '80', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'indirect_selection': 'eager', 'fail_fast': 'False', 'quiet': 'False', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'version_check': 'True', 'write_json': 'True', 'profiles_dir': '/home/jflactif/.dbt', 'cache_selected_only': 'False', 'log_format': 'default', 'log_path': 'logs', 'debug': 'False', 'warn_error': 'None', 'use_experimental_parser': 'False', 'target_path': 'None'}
+[0m09:43:42.129267 [debug] [MainThread]: Starter project path: /mnt/c/Projets/dst_airlines/venv/lib/python3.12/site-packages/dbt/include/starter_project
+[0m09:43:42.386563 [info ] [MainThread]: 
+Your new dbt project "dbt_airlines" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m09:43:42.387443 [info ] [MainThread]: Setting up your profile.
+[0m09:43:59.618110 [error] [MainThread]: Encountered an error:
+
+[0m09:43:59.637607 [error] [MainThread]: Traceback (most recent call last):
+  File "/mnt/c/Projets/dst_airlines/venv/lib/python3.12/site-packages/dbt/cli/requires.py", line 182, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Projets/dst_airlines/venv/lib/python3.12/site-packages/dbt/cli/requires.py", line 128, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Projets/dst_airlines/venv/lib/python3.12/site-packages/dbt/cli/main.py", line 483, in init
+    results = task.run()
+              ^^^^^^^^^^
+  File "/mnt/c/Projets/dst_airlines/venv/lib/python3.12/site-packages/dbt/task/init.py", line 346, in run
+    self.setup_profile(profile_name)
+  File "/mnt/c/Projets/dst_airlines/venv/lib/python3.12/site-packages/dbt/task/init.py", line 262, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+  File "/mnt/c/Projets/dst_airlines/venv/lib/python3.12/site-packages/dbt/task/init.py", line 179, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+  File "/mnt/c/Projets/dst_airlines/venv/lib/python3.12/site-packages/dbt/task/init.py", line 163, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Projets/dst_airlines/venv/lib/python3.12/site-packages/dbt/task/init.py", line 129, in generate_target_from_input
+    target[key] = click.prompt(
+                  ^^^^^^^^^^^^^
+  File "/mnt/c/Projets/dst_airlines/venv/lib/python3.12/site-packages/click/termui.py", line 171, in prompt
+    value = prompt_func(prompt)
+            ^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Projets/dst_airlines/venv/lib/python3.12/site-packages/click/termui.py", line 154, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m09:43:59.640083 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": false, "command_wall_clock_time": 17.763723, "process_in_blocks": "24352", "process_kernel_time": 0.34802, "process_mem_max_rss": "104212", "process_out_blocks": "0", "process_user_time": 1.156656}
+[0m09:43:59.641078 [debug] [MainThread]: Command `dbt init` failed at 09:43:59.640925 after 17.76 seconds
+[0m09:43:59.642127 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f33e3452f30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f33e1811e50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f33e1827da0>]}
+[0m09:43:59.642949 [debug] [MainThread]: Flushing usage events
+[0m09:44:00.152537 [debug] [MainThread]: An error was encountered while trying to flush usage events

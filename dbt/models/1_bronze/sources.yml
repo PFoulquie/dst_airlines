@@ -1,0 +1,6 @@
+version: 2
+sources:
+  - name: afklm_bronze
+    schema: bronze
+    tables:
+      - name: b_afklm_flights
