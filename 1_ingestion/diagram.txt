@@ -1,0 +1,113 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table flight {
+  id varchar [primary key]
+  flightNumber int
+  flightScheduleDate timestamp
+  haul varchar
+  route varchar[]
+  flightStatusPublic varchar
+  airlineCode varchar
+}
+
+Table codeShareRelation {
+  codeShareId varchar [primary key]
+  relationsCode varchar
+  relationsType varchar
+  airlineCode varchar
+  flightId varchar
+}
+
+Table airline {
+  code varchar [primary key]
+  name varchar
+}
+
+Table airport {
+  code varchar [primary key]
+  name varchar
+  cityCode varchar
+}
+
+Table city {
+  code varchar [primary key]
+  name varchar
+  lat float
+  lon float
+  countryCode varchar
+}
+
+Table country {
+  code varchar [primary key]
+  name varchar
+  euroCountry varchar
+  euCountry varchar
+  areaCode varchar
+}
+
+Table aircraft {
+  code varchar [primary key]
+  name varchar
+  ownerAirlineCode varchar
+  physicalPaxConfiguration varchar
+  physicalFreightConfiguration varchar
+  operationalConfiguration varchar
+  cockpitCrewEmployerCode varchar
+  cabinCrewEmployerCode varchar
+}
+
+Table irregularity {
+  id varchar [primary key]
+  flightLegId varchar
+  cancelled varchar
+  delayCode varchar
+  delayInformation varchar
+}
+
+Table delay {
+  delayCode varchar [primary key]
+  delayReason varchar 
+  delayReasonCode varchar
+}
+
+Table flightLeg {
+  flightLegId varchar [primary key]
+  flightId varchar
+  airportCode varchar
+  gateNumber varchar
+  terminalCode varchar
+  checkInZone varchar
+  paxDepartureGate varchar
+  scheduledTime timestamp
+  latestPublishedTime timestamp
+  departureOrArrival varchar
+  legStatus varchar
+  passengerCustomStatus varchar
+  serviceType varchar
+  serviceTypeName varchar
+  restricted varchar
+  scheduledFlightDuration varchar
+  completionPercentage int
+  timeZoneDifference varchar
+  aircraftCode varchar
+}
+
+Ref: flightLeg.flightId < flight.id
+Ref: flightLeg.airportCode < airport.code
+Ref: flightLeg.aircraftCode < aircraft.code
+Ref: flightLeg.flightLegId > irregularity.flightLegId
+Ref: irregularity.delayCode < delay.delayCode 
+Ref: aircraft.cockpitCrewEmployerCode < airline.code
+Ref: aircraft.ownerAirlineCode < airline.code
+Ref: aircraft.cabinCrewEmployerCode < airline.code
+
+Ref: city.countryCode < country.code
+
+Ref: airport.cityCode < city.code
+
+Ref: airline.code > codeShareRelation.airlineCode
+
+Ref: codeShareRelation.flightId  < flight.id
+
+Ref: airline.code > flight.airlineCode
