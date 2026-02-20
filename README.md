@@ -1,55 +1,43 @@
-# ✈️ DST Airlines - Data Pipeline
+# ✈️ DST Airlines - Data Pipeline (ELT Edition)
 
-Projet de pipeline de données automatisé pour le suivi des vols et des infrastructures aéroportuaires. Ce projet utilise une architecture **Medallion** pour garantir la qualité et l'historisation des données.
-
----
+Projet de pipeline de données automatisé pour le suivi des vols. Le projet a été migré d'une structure de scripts isolés vers une architecture **ELT (Extract-Load-Transform)** pilotée par **Airflow** et **dbt**.
 
 ## 🏗️ Architecture des Données
 
-Le projet repose sur une base PostgreSQL distante structurée en deux schémas principaux :
+Le projet utilise l'architecture **Medallion** sur PostgreSQL (Supabase) :
 
-* **Staging (Bronze)** : Réception des données brutes de l'API AirLabs. Les tables sont écrasées à chaque rafraîchissement (`Replace`).
-* **Acquisition (Silver)** : Données nettoyées, dédoublonnées et enrichies.
-    * Les aéroports sont historisés et enrichis avec des données géographiques via OpenStreetMap.
-    * Les vols sont gérés via une logique d'**Upsert** (Update or Insert) pour conserver l'historique sans doublons.
+* **Bronze (Schema: `bronze`)** : Ingestion des données brutes au format JSON depuis l'API **Air France-KLM**.
+* **Silver (Schema: `silver`)** : 
+    * `s_flights` : Nettoyage, typage et structuration des données de vols.
+    * `s_airports` : Dimension de référence extraite dynamiquement des données de vols (Codes IATA, noms, villes et coordonnées GPS).
+* **Gold (Schema: `gold`)** : Couche de présentation pour le reporting et les KPIs.
 
----
 
-## 🛠️ Installation et Configuration
+
+## 🛠️ Stack Technique
+
+* **Source** : API Air France-KLM (Open Data).
+* **Orchestration** : Airflow (Scripts d'ingestion Bronze).
+* **Transformation** : dbt (Data Build Tool) pour le modeling SQL.
+* **Stockage** : PostgreSQL (Supabase).
+
+## 🚀 Installation et Configuration
 
 ### 1. Prérequis
 * Python 3.10+
-* Un environnement virtuel actif (`env`)
-* La bibliothèque `python-dotenv` pour la gestion des secrets.
+* Un environnement virtuel actif (`venv`)
+* Accès SSH configuré pour GitHub
 
-### 2. Installation des dépendances
-```bash
-pip install -r requirements.txt
-3. Configuration de l'environnement
-Créez un fichier .env à la racine du projet (ce fichier est ignoré par Git). Utilisez le modèle suivant :
+### 2. Configuration de l'environnement
+Créez un fichier `.env` à la racine du projet :
+```env
+# API Key Air France-KLM
+AF_API_KEY=votre_cle_api
 
-Extrait de code
-# API Key AirLabs
-AIRLABS_API_KEY=votre_cle_api
-
-# Base de Données PostgreSQL (Serveur Distant)
-DB_USER=exploitation
+# Base de Données PostgreSQL
+DB_USER=postgres
 DB_PASSWORD=votre_mot_de_passe
-DB_HOST=XX.XX.XX.XX  # Demander l'IP à l'administrateur
+DB_HOST=votre_host_supabase
 DB_PORT=5432
-DB_NAME=data_hub
-🚀 Utilisation du Pipeline
-Exécutez les scripts dans l'ordre suivant pour mettre à jour la base :
-
-Ingestion : python 1_ingestion/ingestion_airlabs.py
-
-Nettoyage Silver : python 2_silver_processing/silver_flights_clean.py
-
-Enrichissement Géo : python 2_silver_processing/silver_airports_geo.py
-
-📈 Évolutions à venir (Roadmap)
-[ ] Migration de la couche Bronze vers MongoDB (Docker local).
-
-[ ] Mise en place de dbt pour les transformations SQL.
-
-[ ] Création de la couche Gold pour les indicateurs de performance (KPIs).
+DB_NAME=postgres
+DB_SCHEMA=silver
