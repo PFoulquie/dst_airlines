@@ -43,11 +43,15 @@ Table flightLeg {
   flightLegId varchar [primary key]
   scheduledFlightId varchar
   legStatus varchar
+  Status varchar
   passengerCustomStatus varchar
   serviceType varchar
   serviceTypeName varchar
   restricted varchar
   scheduledFlightDuration varchar
+  departureDateTimeDifference varchar
+  arrivalDateTimeDifference varchar
+  timeToArrival varchar
   completionPercentage int
   timeZoneDifference varchar
   aircraftCode varchar
@@ -108,36 +112,35 @@ Table flightLeg {
 
 
 Table airline {
-  code varchar [primary key]
-  name varchar
+  airlineCode varchar [primary key]
+  airlineName varchar
 }
 
 Table airport {
-  code varchar [primary key]
-  name varchar
+  airportCode varchar [primary key]
+  airportName varchar
   latitude float
   longitude float
   cityCode varchar
 }
 
 Table city {
-  code varchar [primary key]
-  name varchar
-
+  cityCode varchar [primary key]
+  cityName varchar
   countryCode varchar
 }
 
 Table country {
-  code varchar [primary key]
-  name varchar
+  countryCode varchar [primary key]
+  countryName varchar
   euroCountry varchar
   euCountry varchar
   areaCode varchar
 }
 
 Table aircraft {
-  code varchar [primary key]
-  name varchar
+  aircraftCode varchar [primary key]
+  aircraftName varchar
   ownerAirlineCode varchar
   physicalPaxConfiguration varchar
   physicalFreightConfiguration varchar
@@ -149,7 +152,6 @@ Table aircraft {
   subFleetCodeId varchar
   typeCode varchar
   typeName varchar
-  wifiEnabled varchar
 }
 
 Table irregularity {
