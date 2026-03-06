@@ -155,20 +155,32 @@ Table aircraft {
 }
 
 Table irregularity {
-  id varchar [primary key]
-  flightLegId varchar
+  flightLegId varchar [primary key]
   cancelled varchar
+  cancellationReasonCode varchar
+  delayDuration int
   delayCode varchar
-  delayInformation varchar
 }
 
+Table cancellationReason {
+    cancellationReasonCode varchar
+    cancellationReasonShort varchar
+    cancellationReasonLong varchar
+}
 Table delay {
   delayCode varchar [primary key]
-  delayReason varchar 
   delayReasonCode varchar
-  delayDuration int
 }
 
+Table delayReason {
+  delayReasonCode varchar [primary key]
+  delayReason varchar 
+}
+
+Ref: flightLeg.flightLegId > irregularity.flightLegId
+Ref: delay.delayReasonCode < delayReason.delayReasonCode
+Ref : irregularity.cancellationReasonCode < cancellationReason.cancellationReasonCode
+Ref: irregularity.delayCode < delay.delayCode 
 
 Ref: flight.flightId > codeShareRelation.flightId
 Ref: flight.flightId > codeShareRelation.relatedFlightId
@@ -177,19 +189,17 @@ Ref: flightRelation.scheduledFlightId < scheduledFlight.scheduledFlightId
 Ref: flightRelation.relatedScheduledFlightId < scheduledFlight.scheduledFlightId
 
 Ref: flightLeg.scheduledFlightId < scheduledFlight.scheduledFlightId
-Ref: flightLeg.departureAirportCode < airport.code
-Ref: flightLeg.arrivalAirportCode < airport.code
-Ref: flightLeg.aircraftCode < aircraft.code
-Ref: flightLeg.flightLegId > irregularity.flightLegId
-Ref: irregularity.delayCode < delay.delayCode 
-Ref: aircraft.cockpitCrewEmployerCode < airline.code
-Ref: aircraft.ownerAirlineCode < airline.code
-Ref: aircraft.cabinCrewEmployerCode < airline.code
+Ref: flightLeg.departureAirportCode < airport.airportCode
+Ref: flightLeg.arrivalAirportCode < airport.airportCode
+Ref: flightLeg.aircraftCode < aircraft.aircraftCode
+Ref: aircraft.cockpitCrewEmployerCode < airline.airlineCode
+Ref: aircraft.ownerAirlineCode < airline.airlineCode
+Ref: aircraft.cabinCrewEmployerCode < airline.airlineCode
 
-Ref: city.countryCode < country.code
+Ref: city.countryCode < country.countryCode
 
-Ref: airport.cityCode < city.code
+Ref: airport.cityCode < city.cityCode
 
 
-Ref: airline.code > flight.airlineCode
+Ref: airline.airlineCode > flight.airlineCode
 
