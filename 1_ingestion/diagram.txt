@@ -155,7 +155,7 @@ Table aircraft {
 }
 
 Table irregularity {
-  flightLegId varchar [primary key]
+  flightLegId varchar
   cancelled varchar
   cancellationReasonCode varchar
   delayDuration int
