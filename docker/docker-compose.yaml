@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  db:
+    container_name: pg_container
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: pierre
+      POSTGRES_PASSWORD: data
+      POSTGRES_DB: dst_db
+    ports:
+      - "5432:5432"
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pierre.foulquie@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: data
+    ports:
+      - "5050:80"
