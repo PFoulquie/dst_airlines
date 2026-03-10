@@ -1,0 +1,25 @@
+Function connect_to_postgre
+Function load_afklm_raw_json
+AFKLM_get_flight_2026_01_30_2026_01_31_page_38.json
+Function prepare_nested_fields
+Function prepare_nested_fields
+Function create_relation_df
+Function create_relation_df
+Function create_relation_df
+Function ingest_scheduledFlight
+Function ingest_flight
+Function ingest_airline
+Function ingest_codeShareRelationFlight
+Function ingest_codeShareRelation
+Function ingest_flightRelation
+Function ingest_flightRelation
+Function ingest_flightRelation
+Function ingest_flightLeg
+Function ingest_airport
+Function ingest_city
+Function ingest_country
+Function ingest_aircraft
+Function ingest_irregularity
+Function ingest_delay
+Function ingest_delayReason
+Function ingest_cancelReason

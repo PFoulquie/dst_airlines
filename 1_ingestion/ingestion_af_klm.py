@@ -3,6 +3,13 @@ import json
 import psycopg2
 import pandas as pd
 from sqlalchemy import create_engine
+from sqlalchemy.types import String, Date, DateTime
+
+
+# TODO: 
+# intégrér du sqlalchemy pour la création de tables afin de définir les clés primaires et secondaires. Exemple : https://stackoverflow.com/questions/19175311/how-to-create-only-one-table-with-sqlalchemy
+# On ajoute donc une étape de création de table avant l'ingestion 
+
 
 # decorator to print function 
 def print_func_name(func):
@@ -305,7 +312,7 @@ def ingest_flightLeg(prepared_df, engine):
 @print_func_name
 def ingest_airport(prepared_df, engine):
     # On joint les infos sur les airports de départs et arrivées 
-    prepared_df = add_missing_columns(df_legs, "airport")
+    prepared_df = add_missing_columns(prepared_df, "airport")
 
     df_departure_airport = prepared_df[[
         "departureInformation.airport.code",
@@ -351,7 +358,7 @@ def ingest_airport(prepared_df, engine):
 @print_func_name   
 def ingest_city(prepared_df, engine):
         # On joint les infos sur les prepared_df de départs et arrivées 
-    prepared_df = add_missing_columns(df_legs, "city") 
+    prepared_df = add_missing_columns(prepared_df, "city") 
 
     df_departure_city = prepared_df[[
         "departureInformation.airport.city.code",
@@ -437,7 +444,7 @@ def ingest_country(prepared_df, engine):
 
 @print_func_name
 def ingest_aircraft(prepared_df, engine):
-    prepared_df = add_missing_columns(df_legs, "aircraft") 
+    prepared_df = add_missing_columns(prepared_df, "aircraft") 
 
     df_aircraft = prepared_df[[
     "aircraft.typeCode",
@@ -490,6 +497,7 @@ def ingest_aircraft(prepared_df, engine):
     "typeName" 
     ], 
             index=False)
+    
 @print_func_name
 def ingest_irregularity(prepared_df, engine):
     prepared_df = add_missing_columns(prepared_df, "irregularity") 
@@ -503,8 +511,11 @@ def ingest_irregularity(prepared_df, engine):
         to_sql('irregularity', con=engine, if_exists='append',
             index_label = ["flightLegId","cancelled","cancellationReasonCode","delayCode","delayDuration"], 
             index=False)
+    
+
 @print_func_name
 def ingest_delay(prepared_df, engine):
+    prepared_df = add_missing_columns(prepared_df, "delay") 
     df_delay = prepared_df[['irregularity.delayCode',"irregularity.delayReasonCodePublic"]].drop_duplicates() # attention, voir si c'est unique
     df_delay.columns = ["delayCode","delayReasonCode"]
     df_delay.\
@@ -514,6 +525,7 @@ def ingest_delay(prepared_df, engine):
 
 @print_func_name
 def ingest_delayReason(prepared_df, engine):
+    prepared_df = add_missing_columns(prepared_df, "delayReason")
     df_delayreason = prepared_df[["irregularity.delayReasonCodePublic", 
                 "irregularity.delayReasonPublicLangTransl"]].drop_duplicates()
     df_delayreason.columns = ["delayReasonCode", "delayReason"]
@@ -521,18 +533,20 @@ def ingest_delayReason(prepared_df, engine):
         to_sql('delayReason', con=engine, if_exists='append',
             index_label = ["delayReasonCode", "delayReason"],
             index=False)
+
 @print_func_name
 def ingest_cancelReason(prepared_df, engine):
+    prepared_df = add_missing_columns(prepared_df, "cancellationReason") 
     df_cancelreason = prepared_df[["irregularity.cancellationReasonCodePublic",
     "irregularity.cancellationReasonPublicShort",
     "irregularity.cancellationReasonPublicLong"]].drop_duplicates()
     df_cancelreason.columns = ["cancellationReasonCode","cancellationReasonShort","cancellationReasonLong"]
+
     df_cancelreason.\
         to_sql('cancelReason', con=engine, if_exists='append',
             index_label = ["cancellationReasonCode","cancellationReasonShort","cancellationReasonLong"],
             index=False)
-
-
+    
 
 
 def main(data_path):
@@ -544,6 +558,8 @@ def main(data_path):
     files_ = os.listdir(data_path)
 
     for json_file in files_:
+    #for i in range(2): # for tests 
+     #   json_file = files_[i]
         df = load_afklm_raw_json(data_path, json_file)
     
         # Preparation 
