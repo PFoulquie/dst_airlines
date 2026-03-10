@@ -121,7 +121,7 @@ def ingest_scheduledFlight(df, engine):
             index_label = ['scheduledFlightId','flightNumber','flightScheduleDate','haul','route','flightStatusPublic','airlineCode'],
             index=False)
 @print_func_name
-def ingestion_flight(df, engine):
+def ingest_flight(df, engine):
     # Ingest flight table 
     df = add_missing_columns(df, "flight")
     flight = df[["flightId","flightNumber","airline.code"]].drop_duplicates() 
@@ -129,6 +129,13 @@ def ingestion_flight(df, engine):
     flight.\
         to_sql('flight', con=engine, if_exists='append',index_label = ["flightId",'flightNumber','airlineCode'], index=False)
     # à compléter par les vols de codesharerelations 
+
+@print_func_name
+def ingest_airline(df, engine):
+    df = add_missing_columns(df, "airline")
+    airline = df[["airline.code","airline.name"]].drop_duplicates()
+    airline.columns = ["airlineCode","airlineName"]
+    airline.to_sql("airline",con=engine,if_exists='append', index=False)
 
 @print_func_name
 def ingest_codeShareRelationFlight(prepared_df, engine):
@@ -548,7 +555,8 @@ def main(data_path):
 
         # Ingestion 
         ingest_scheduledFlight(df, engine)
-        ingestion_flight(df, engine)
+        ingest_flight(df, engine)
+        ingest_airline(df, engine)
         ingest_codeShareRelationFlight(prepared_df_codeShareRelation, engine)
         ingest_codeShareRelation(prepared_df_codeShareRelation, engine)
         ingest_flightRelation(df_relations_previous, engine)

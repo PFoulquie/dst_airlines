@@ -14,6 +14,10 @@
         "aircraft.typeCode",
         "aircraft.typeName"
     ],
+    "airline": [
+        "airline.code",
+        "airline.name"
+    ],
     "airport": [
         "departureInformation.airport.code",
         "departureInformation.airport.name",
