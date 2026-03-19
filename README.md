@@ -17,8 +17,8 @@ Le projet s'appuie sur deux dépôts Git distincts :
 
 | Dépôt | Rôle |
 |-------|------|
-| `dst_airlines` | Environnement de développement et d'exploration (notebooks, prototypes, documentation de travail) |
-| `afklm-delay-pipeline` *(ce repo)* | Pipeline de production validé — code stable, prêt à être présenté et déployé |
+| `dst_airlines` *(ce repo)* | Environnement de développement et d'exploration (notebooks, prototypes, documentation de travail) |
+| `afklm-delay-pipeline` | Pipeline de production validé — code stable, prêt à être présenté et déployé |
 
 ---
 
@@ -95,7 +95,22 @@ L'analogie : les données brutes sont comme des ingrédients non préparés. dbt
 
 ### mise — Gestionnaire d'environnement
 
-mise gère la version de Python utilisée dans ce projet (3.13.2) et définit la variable `DBT_PROFILES_DIR` qui force dbt à utiliser le fichier de configuration local (`profiles.yml`) plutôt qu'un fichier global partagé. Cela garantit l'**isolation** entre ce projet et d'autres projets dbt sur la même machine.
+mise gère la **version de Python** utilisée dans ce repo (3.13.2). Dans ce repo de développement, il n'y a pas de dbt — mise se contente de garantir que `python` pointe sur la bonne version.
+
+**mise vs venv — rôles complémentaires :**
+
+| Outil | Rôle | Fichier de config |
+|-------|------|-------------------|
+| mise | Version de Python (runtime) | `.mise.toml` |
+| venv | Packages Python isolés du projet | `requirements.txt` |
+
+Les deux s'utilisent ensemble : mise garantit que `python` pointe sur la bonne version, venv garantit que `dlt`, `scikit-learn`, etc. sont installés dans un environnement isolé.
+
+**Remarques pratiques :**
+
+- `mise trust` : demandé une seule fois par projet, c'est une mesure de sécurité normale (mise ne fait pas confiance automatiquement aux nouveaux fichiers `.mise.toml`).
+- `mise install` : installe Python 3.13.2 si absent — **pas nécessaire à chaque session**, Python reste installé sur la machine.
+- Dans certains projets, dbt est installé comme outil mise — dans ce cas il faut `mise run dbt run`. Dans le repo `afklm-delay-pipeline`, dbt est dans le venv Python, donc `dbt run` suffit après activation du venv.
 
 ---
 
@@ -191,6 +206,20 @@ cp .dlt/secrets.toml.example .dlt/secrets.toml
 
 # Les fichiers .env.dev et .env.prod sont fournis séparément (hors Git)
 ```
+
+---
+
+## Reprendre le travail (session suivante)
+
+Quand tu rouvres le workspace après l'avoir fermé, **`mise install` n'est pas nécessaire** — Python et les packages sont déjà installés. Il suffit de réactiver le venv :
+
+```bash
+cd dst_airlines
+source venv/bin/activate    # réactive le venv (packages déjà là)
+# Les variables .env sont chargées automatiquement par python-dotenv dans les scripts
+```
+
+> Les scripts (`afklm_dlt_pipeline.py`, `ml_score.py`) utilisent `python-dotenv` (`load_dotenv()`) pour lire le `.env` automatiquement — pas besoin de l'exporter manuellement.
 
 ---
 
