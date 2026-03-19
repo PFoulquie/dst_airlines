@@ -1,0 +1,205 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table flight {
+  flightId var [primary key]
+  flightNumber int
+  airlineCode varchar
+}
+Ref: flight.flightId > scheduledFlight.flightId
+
+
+Table scheduledFlight {
+  scheduledFlightId varchar [primary key]
+  flightId varchar
+  flightNumber int
+  flightScheduleDate timestamp
+  haul varchar
+  route varchar[]
+  flightStatusPublic varchar
+  airlineCode varchar
+}
+
+Table codeShareRelation {
+  codeShareId varchar [primary key]
+  flightId varchar
+  relatedFlightId varchar
+}
+
+
+
+Table flightRelation {
+  flightRelationId int [primary key]
+  scheduledFlightId varchar
+  relatedScheduledFlightId varchar
+  relationType varchar
+}
+
+
+
+
+
+Table flightLeg {
+  flightLegId varchar [primary key]
+  scheduledFlightId varchar
+  legStatus varchar
+  Status varchar
+  passengerCustomStatus varchar
+  serviceType varchar
+  serviceTypeName varchar
+  restricted varchar
+  scheduledFlightDuration varchar
+  departureDateTimeDifference varchar
+  arrivalDateTimeDifference varchar
+  timeToArrival varchar
+  completionPercentage int
+  timeZoneDifference varchar
+  aircraftCode varchar
+  departureAerogareCode varchar
+  departureGateNumber varchar
+  departureParkingPosition varchar
+  departureParkingPositionCustomStatus varchar
+  departureParkingPositionType varchar
+  departurePierCode varchar
+  departureTerminalCode varchar
+  departureAirportCode varchar
+  departureActualTime  timestamp
+  departureLatestPublishedTime  timestamp
+  departureModifiedTime  timestamp
+  departureScheduledTime  timestamp
+  departureBoardingContactType varchar
+  departureBoardingPier varchar
+  departureBoardingTerminal varchar
+  departureCheckInAerogare varchar
+  departureCheckInZone varchar
+  departureTerminal varchar
+  departurePaxDepartureGate varchar
+  departureActualBoardingOpen timestamp
+  departureFirstPaxBoarding timestamp
+  departureGateCloseTime timestamp
+  departurePlannedBoardingTime timestamp
+  departureActualTakeOffTime timestamp
+  departureEstimatedPublic timestamp
+  departureEstimatedTakeOffTime timestamp
+  arrivalAerogareCode varchar
+  arrivalGateNumber varchar
+  arrivalParkingPosition varchar
+  arrivalParkingPositionCustomStatus varchar
+  arrivalParkingPositionType varchar
+  arrivalPierCode varchar
+  arrivalTerminalCode varchar
+  arrivalAirportCode varchar
+  arrivalActualTime  timestamp
+  arrivalLatestPublishedTime  timestamp
+  arrivalModifiedTime  timestamp
+  arrivalScheduledTime  timestamp
+  arrivalHall varchar
+  arrivalPositionPier varchar
+  arrivalPositionTerminal varchar
+  arrivalTerminal varchar
+  arrivalBaggageBelt varchar
+  arrivalDisembarkingAerogare varchar
+  arrivalDisembarkingBusQuantity varchar
+  arrivalDisembarkingContactType varchar
+  arrivalExpectedBagOnBeltTime  timestamp
+  arrivalFirstBagOnBeltTime  timestamp
+  arrivalLastBagOnBeltTime  timestamp
+  arrivalActualTouchDownTime  timestamp
+  arrivalEstimated  timestamp
+  arrivalEstimatedArrival timestamp
+  arrivalEstimatedTouchDownTime timestamp
+} 
+
+
+Table airline {
+  airlineCode varchar [primary key]
+  airlineName varchar
+}
+
+Table airport {
+  airportCode varchar [primary key]
+  airportName varchar
+  latitude float
+  longitude float
+  cityCode varchar
+}
+
+Table city {
+  cityCode varchar [primary key]
+  cityName varchar
+  countryCode varchar
+}
+
+Table country {
+  countryCode varchar [primary key]
+  countryName varchar
+  euroCountry varchar
+  euCountry varchar
+  areaCode varchar
+}
+
+Table aircraft {
+  aircraftCode varchar [primary key]
+  aircraftName varchar
+  ownerAirlineCode varchar
+  physicalPaxConfiguration varchar
+  physicalFreightConfiguration varchar
+  operationalConfiguration varchar
+  cockpitCrewEmployerCode varchar
+  cabinCrewEmployerCode varchar
+  registration varchar
+  saleableConfiguration varchar
+  subFleetCodeId varchar
+  typeCode varchar
+  typeName varchar
+}
+
+Table irregularity {
+  flightLegId varchar
+  cancelled varchar
+  cancellationReasonCode varchar
+  delayDuration int
+  delayCode varchar
+}
+
+Table cancellationReason {
+    cancellationReasonCode varchar
+    cancellationReasonShort varchar
+    cancellationReasonLong varchar
+}
+Table delay {
+  delayCode varchar [primary key]
+  delayReasonCode varchar
+}
+
+Table delayReason {
+  delayReasonCode varchar [primary key]
+  delayReason varchar 
+}
+
+Ref: flightLeg.flightLegId > irregularity.flightLegId
+Ref: delay.delayReasonCode < delayReason.delayReasonCode
+Ref : irregularity.cancellationReasonCode < cancellationReason.cancellationReasonCode
+Ref: irregularity.delayCode < delay.delayCode 
+
+Ref: flight.flightId > codeShareRelation.flightId
+Ref: flight.flightId > codeShareRelation.relatedFlightId
+
+Ref: flightRelation.scheduledFlightId < scheduledFlight.scheduledFlightId
+Ref: flightRelation.relatedScheduledFlightId < scheduledFlight.scheduledFlightId
+
+Ref: flightLeg.scheduledFlightId < scheduledFlight.scheduledFlightId
+Ref: flightLeg.departureAirportCode < airport.airportCode
+Ref: flightLeg.arrivalAirportCode < airport.airportCode
+Ref: flightLeg.aircraftCode < aircraft.aircraftCode
+Ref: aircraft.cockpitCrewEmployerCode < airline.airlineCode
+Ref: aircraft.ownerAirlineCode < airline.airlineCode
+Ref: aircraft.cabinCrewEmployerCode < airline.airlineCode
+
+Ref: city.countryCode < country.countryCode
+
+Ref: airport.cityCode < city.cityCode
+
+
+Ref: airline.airlineCode > flight.airlineCode
+
