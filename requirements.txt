@@ -6,3 +6,8 @@ pymongo
 pytz
 dbt-postgres
 python-dotenv
+dlt[postgres]
+scikit-learn
+xgboost
+joblib
+imbalanced-learn
