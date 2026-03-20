@@ -1,6 +1,5 @@
 env/
 __pycache__/
-*.pkl
 *.csv
 .env
 .DS_Store
