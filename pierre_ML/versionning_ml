@@ -1,0 +1,5 @@
+ML: 
+V1 : modèle de base sans overfit control
+V2 : ajout de paramètre pour overfit control 
+V3: correction features delayedshare (7 derniers jours) + ajout dans le train set de données fevrier et mars 
+
