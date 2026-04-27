@@ -285,8 +285,8 @@ def _build_legs_table(flight: dict) -> list[dict]:
             "actualArrival":           arr_times.get("actual"),
             "scheduledFlightDuration": leg.get("scheduledFlightDuration"),  # ex. "PT7H30M"
             "cancelled":                irreg.get("cancelled") == "Y", # Converti en booléen Python
-            "aircraftTypeCode":       (leg.get("aircraft") or {}).get("typeCode"),  # ex. "77W"
-            "aircraftTypeName":       (leg.get("aircraft") or {}).get("typeName"),  # ex. "EMBRAER 195 AND LEGACY 1000"
+            "aircraftCode":       (leg.get("aircraft") or {}).get("typeCode"),  # ex. "77W"
+            "aircraftName":       (leg.get("aircraft") or {}).get("typeName"),  # ex. "EMBRAER 195 AND LEGACY 1000"
             "departureCityCode":      dep_city.get("code"), # ex. "PAR"
             "departureCityName":      dep_city.get("name"), # ex. "SAVANNAH"
             "departureCountryCode":      dep_country.get("code"), # ex. "FR"

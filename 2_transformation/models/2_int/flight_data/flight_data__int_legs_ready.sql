@@ -11,83 +11,115 @@
 
 with base as (
     select
-        d.leg_id,
-        d.flight_id,
-        d.flight_number,
-        d.flight_schedule_date,
-        d.airline_code,
-        d.departure_airport_code,
-        d.arrival_airport_code,
-        d.scheduled_departure,
-        d.actual_departure,
-        d.scheduled_arrival,
-        d.actual_arrival,
+        d.legId,
+        d.flightId,
+        d.flightNumber,
+        d.flightScheduleDate,
+        d.airlineCode,
+        d.departureAirportCode,
+        d.arrivalAirportCode,
+        d.scheduledDeparture,
+        d.actualDeparture,
+        d.scheduledArrival,
+        d.actualArrival,
         d.cancelled,
-        d.delay_code,
-        d.delay_duration_minutes,
-        d.departure_delay_minutes,
-        d.arrival_delay_minutes,
-        d.scheduled_flight_duration,
-        d.aircraft_type_code,
-        {{ parse_iso8601_duration_minutes('d.scheduled_flight_duration') }} as scheduled_flight_duration_min,
-        extract(dow from d.scheduled_departure)::int as departure_weekday,
-        extract(month from d.scheduled_departure)::int as departure_month,
-        extract(hour from d.scheduled_departure)::int as departure_hour,
-        extract(day from d.scheduled_departure)::int as departure_monthday
+        d.delayCode,
+        d.delayDurationMinutes,
+        d.departureDelayMinutes,
+        d.arrivalDelayMinutes,
+        d.scheduledFlightDuration,
+        d.aircraftCode,
+        {{ parse_iso8601_duration_minutes('d.scheduledFlightDuration') }} as scheduledFlightDuration,
+        extract(dow from d.scheduledDeparture)::int as departureWeekday,
+        extract(month from d.scheduledDeparture)::int as departureMonth,
+        extract(hour from d.scheduledDeparture)::int as departureHour,
+        extract(day from d.scheduledDeparture)::int as departureMonthday
     from {{ ref('flight_data__int_delays_leg') }} d
 ),
 with_dep_congestion as (
     select
         b.*,
-        coalesce(dep.nb_departing, 0) as dep_airport_nb_departing,
-        coalesce(dep.nb_arriving, 0) as dep_airport_nb_arriving
+        coalesce(dep.nbFlightDeparting, 0) as nbFlightDepartingDepartureAirport,
+        coalesce(dep.nbFlightArriving, 0) as nbFlightArrivingDepartureAirport
     from base b
     left join {{ ref('flight_data__int_airport_congestion') }} dep
-        on b.departure_airport_code = dep.airport_code
-        and b.flight_schedule_date = dep.flight_schedule_date
+        on b.departureAirportCode = dep.airportCode
+        and b.flightScheduleDate = dep.flightScheduleDate
 ),
 with_arr_congestion as (
     select
         w.*,
-        coalesce(arr.nb_departing, 0) as arr_airport_nb_departing,
-        coalesce(arr.nb_arriving, 0) as arr_airport_nb_arriving
+        coalesce(arr.nbFlightDeparting, 0) as nbFlightDepartingArrivalAirport,
+        coalesce(arr.nbFlightArriving, 0) as nbFlightArrivingArrivalAirport
     from with_dep_congestion w
     left join {{ ref('flight_data__int_airport_congestion') }} arr
-        on w.arrival_airport_code = arr.airport_code
-        and w.flight_schedule_date = arr.flight_schedule_date
+        on w.arrivalAirportCode = arr.airportCode
+        and w.flightScheduleDate = arr.flightScheduleDate
+),
+with_delay_airport as (
+    select 
+        a.*,
+        coalesce(dap.DepartureAirportDelayedShare,0) as DepartureAirportDelayedShare
+    from with_arr_congestion a
+    left join {{ref ("flight_data__int_airport_delays")}} dap
+        on a.departureAirportCode = dap.departureAirportCode
+        and a.flightScheduleDate = dap.flightScheduleDate
+),
+with_delay_aircraft as (
+    select 
+        wdap.*,
+        coalesce(dac.aircraftDelayedShare,0) as aircraftDelayedShare
+    from with_delay_airport wdap
+    left join {{ref ("flight_data__int_aircraft_delays")}} dac
+        on wdap.aircraftCode = dac.aircraftCode
+        and wdap.flightScheduleDate = dac.flightScheduleDate
+),
+with_delay_airline as (
+    select 
+        wdac.*,
+        coalesce(dap.airlineDelayedShare,0) as airlineDelayedShare
+    from with_delay_aircraft wdac
+    left join {{ref ("flight_data__int_airline_delays")}} dal
+        on wdac.airlineCode = dal.airlineCode
+        and wdac.flightScheduleDate = dal.flightScheduleDate
 )
 select
-    leg_id,
-    flight_id,
-    flight_number,
-    flight_schedule_date,
-    airline_code,
-    departure_airport_code,
-    arrival_airport_code,
-    scheduled_departure,
-    actual_departure,
-    scheduled_arrival,
-    actual_arrival,
+    legId,
+    flightId,
+    flightNumber,
+    flightScheduleDate,
+    airlineCode,
+    departureAirportCode,
+    arrivalAirportCode,
+    scheduledDeparture,
+    actualDeparture,
+    scheduledArrival,
+    actualArrival,
     cancelled,
-    delay_code,
-    delay_duration_minutes,
-    departure_delay_minutes,
-    arrival_delay_minutes,
-    scheduled_flight_duration_min,
-    aircraft_type_code,
-    departure_weekday,
-    departure_month,
-    departure_hour,
-    departure_monthday,
-    dep_airport_nb_departing,
-    dep_airport_nb_arriving,
-    arr_airport_nb_departing,
-    arr_airport_nb_arriving,
+    delayCode,
+    delayDurationMinutes,
+    departureDelayMinutes,
+    arrivalDelayMinutes,
+    scheduledFlightDuration,
+    aircraftCode,
+    departureWeekDay,
+    departureMonth,
+    departureHour,
+    departureMonthDay,
+    nbFlightDepartingDepartureAirport,
+    nbFlightArrivingDepartureAirport,
+    nbFlightDepartingArrivalAirport,
+    nbFlightArrivingArrivalAirport,
+    DepartureAirportDelayedShare,
+    aircraftDelayedShare,
+    airlineDelayedShare
+
     case
-        when coalesce(departure_delay_minutes, 0) >= 15
-          or coalesce(arrival_delay_minutes, 0) >= 15
-          or coalesce(delay_duration_minutes, 0) >= 15
+        when coalesce(departureDelayMinutes, 0) >= 15
+          or coalesce(arrivalDelayMinutes, 0) >= 15
+          or coalesce(delayDurationMinutes, 0) >= 15
         then true
         else false
     end as is_delayed
-from with_arr_congestion
+from with_delay_airline
+
