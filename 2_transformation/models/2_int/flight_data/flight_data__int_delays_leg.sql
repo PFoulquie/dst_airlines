@@ -19,12 +19,14 @@ with legs as (
         l.actualDeparture,
         l.actualArrival,
         l.scheduledFlightDuration,
-        l.aircraftTypeCode,
+        l.aircraftCode,
         f.airlineCode,
         l.departureAirportCode,
         l.arrivalAirportCode,
         l.legOrder,
         l.cancelled,
+        round(extract(epoch from (l.actualDeparture - l.scheduledDeparture)) / 60)::int as departureDelayMinutes,
+        round(extract(epoch from (l.actualArrival - l.scheduledArrival)) / 60)::int as arrivalDelayMinutes
     from {{ ref('flight_data__source_operational_flight_legs') }} l
     join {{ ref('flight_data__source_operational_flights') }} f on l.flightId = f.id
 ),
@@ -60,7 +62,7 @@ select
     legs.actualArrival,
     legs.scheduledFlightDuration,
     legs.cancelled,
-    legs.aircraftTypeCode,
+    legs.aircraftCode,
     legs.departure_delay_minutes,
     legs.arrival_delay_minutes,
     delay_agg.delayCode,
