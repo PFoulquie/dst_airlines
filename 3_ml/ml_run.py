@@ -107,9 +107,9 @@ def main():
 
     create_sql = """
     CREATE TABLE IF NOT EXISTS public.ml_delays (
-        legId UUID,
-        flightId VARCHAR(50),
-        delayPredicted INTEGER,
+        leg_id UUID,
+        flight_id VARCHAR(50),
+        delay_predicted INTEGER,
         PRIMARY KEY (legId)
     );
     """
@@ -117,7 +117,7 @@ def main():
         #conn.execute(text("DROP TABLE IF EXISTS public.ml_delays CASCADE"))
         conn.execute(text(create_sql))
 
-    cols_out = ["legId", "flightId", "delayPredicted"]
+    cols_out = ["leg_id", "flight_id", "delay_predicted"]
     df_w_pred[cols_out].to_sql(
         "ml_delays",
         engine,
