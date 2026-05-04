@@ -4,15 +4,15 @@
 -- Source : table `operational_flights` chargée par dlt depuis l'API AF/KLM.
 -- Grain  : 1 ligne par vol.
 -- Rôle   : typage uniquement (int, date, timestamptz). Aucune transformation métier.
-{{ config(schema='raw', materialized='view') }}
+
 select
     id,
-    flight_number,
-    flight_schedule_date,
-    airline_code,
-    airline_name,
+    flightNumber::int as flightNumber,
+    flightScheduleDate::date as flightScheduleDate,
+    airlineCode,
+    airlineName,
     haul,
     route,
-    flight_status_public,
-    fetched_at
-from {{ source('flight_data', 'operational_flights') }}
+    flightStatusPublic,
+    fetchedAt::timestamptz as fetchedAt
+from "postgres"."public"."operational_flights"

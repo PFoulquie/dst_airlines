@@ -10,62 +10,62 @@
 
 with legs as (
     select
-        l.id as legId,
-        l.flightId,
-        f.flightNumber,
-        f.flightScheduleDate,
-        l.scheduledDeparture,
-        l.scheduledArrival,
-        l.actualDeparture,
-        l.actualArrival,
-        l.scheduledFlightDuration,
-        l.aircraftCode,
-        f.airlineCode,
-        l.departureAirportCode,
-        l.arrivalAirportCode,
-        l.legOrder,
+        l.id as leg_id,
+        l.flight_id,
+        f.flight_number,
+        f.flight_schedule_date,
+        l.scheduled_departure,
+        l.scheduled_arrival,
+        l.actual_departure,
+        l.actual_arrival,
+        l.scheduled_flight_duration,
+        l.aircraft_code,
+        f.airline_code,
+        l.departure_airport_code,
+        l.arrival_airport_code,
+        l.leg_order,
         l.cancelled,
-        round(extract(epoch from (l.actualDeparture - l.scheduledDeparture)) / 60)::int as departureDelayMinutes,
-        round(extract(epoch from (l.actualArrival - l.scheduledArrival)) / 60)::int as arrivalDelayMinutes
+        round(extract(epoch from (l.actual_departure - l.scheduled_departure)) / 60)::int as departure_delay_minutes,
+        round(extract(epoch from (l.actual_arrival - l.scheduled_arrival)) / 60)::int as arrival_delay_minutes
     from {{ ref('flight_data__source_operational_flight_legs') }} l
-    join {{ ref('flight_data__source_operational_flights') }} f on l.flightId = f.id
+    join {{ ref('flight_data__source_operational_flights') }} f on l.flight_id = f.id
 ),
 delay_parsed as (
     select
-        flightLegId,
-        delayCode,
-        {{ parse_iso8601_duration_minutes('delayDuration') }} as delayMin
+        flight_leg_id,
+        delay_code,
+        {{ parse_iso8601_duration_minutes('delay_duration') }} as delay_min
     from {{ ref('flight_data__source_operational_flight_delays') }}
     where delay_duration is not null
 ),
 delay_agg as (
     select
-        flightLegId,
-        sum(delayMin)::int as delayDurationMinutes,
-        min(delayCode) as delayCode
+        flight_leg_id,
+        sum(delay_min)::int as delay_duration_minutes,
+        min(delay_code) as delay_code
     from delay_parsed
-    group by flightLegId
+    group by flight_leg_id
 )
 select
-    legs.legId,
-    legs.flightId,
-    legs.flightNumber,
-    legs.flightScheduleDate,
-    legs.airlineCode,
-    legs.legOrder,
-    legs.departureAirportCode,
-    legs.arrivalAirportCode,
+    legs.leg_id,
+    legs.flight_id,
+    legs.flight_number,
+    legs.flight_schedule_date,
+    legs.airline_code,
+    legs.leg_order,
+    legs.departure_airport_code,
+    legs.arrival_airport_code,
     legs.published_status,
-    legs.scheduledDeparture,
-    legs.actualDeparture,
-    legs.scheduledArrival,
-    legs.actualArrival,
-    legs.scheduledFlightDuration,
+    legs.scheduled_departure,
+    legs.actual_departure,
+    legs.scheduled_arrival,
+    legs.actual_arrival,
+    legs.scheduled_flight_duration,
     legs.cancelled,
-    legs.aircraftCode,
+    legs.aircraft_code,
     legs.departure_delay_minutes,
     legs.arrival_delay_minutes,
-    delay_agg.delayCode,
-    delay_agg.delayDurationMinutes
+    delay_agg.delay_code,
+    delay_agg.delay_duration_minutes
 from legs
-left join delay_agg on legs.legId = delay_agg.flightLegId
+left join delay_agg on legs.leg_id = delay_agg.flight_leg_id

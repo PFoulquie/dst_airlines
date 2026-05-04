@@ -7,23 +7,25 @@
 
 with flights_within_7_days as (
     select
-        l.departureAirportCode,
-        d.delayDuration,
+        l.departure_airport_code,
+        d.delay_duration,
         l.cancelled,
-        f.flightScheduleDate
+        f.flight_schedule_date
     from {{ ref('flight_data__source_operational_flight_legs') }} l
-    join {{ ref('flight_data__source_operational_flights') }} f on l.flightId = f.id
-    join {{ ref('flight_data__source_operational_flight_delays') }} d on l.id = d.flightLegId
+    join {{ ref('flight_data__source_operational_flights') }} f on l.flight_id = f.id
+    join {{ ref('flight_data__source_operational_flight_delays') }} d on l.id = d.flight_leg_id
     where l.cancelled = 'N'
-), 
-select 
-    fsd.departureAirportCode,
-    fsd.flightScheduleDate,
-        sum(CASE WHEN fsd2.delayDuration != '00' THEN 1 ELSE 0 END) * 100.0 /
-        NULLIF(COUNT(fsd2.delayDuration),0) as DepartureAirportDelayedShare
-FROM flights_within_7_days fsd left join flights_within_7_days fsd2 
-    ON fsd.departureAirportCode = fsd2.departureAirportCode
-        AND fsd2.flightScheduleDate BETWEEN fsd.flightScheduleDate - INTERVAL '7 days' AND fsd.flightScheduleDate
-        GROUP BY
-    fsd.departureAirportCode,
-    fsd.flightScheduleDate
+),
+
+select
+    fsd.departure_airport_code,
+    fsd.flight_schedule_date,
+    sum(CASE WHEN fsd2.delay_duration != '00' THEN 1 ELSE 0 END) * 100.0 /
+    NULLIF(COUNT(fsd2.delay_duration), 0) as departure_airport_delayed_share
+from flights_within_7_days fsd
+left join flights_within_7_days fsd2
+    on fsd.departure_airport_code = fsd2.departure_airport_code
+    and fsd2.flight_schedule_date between fsd.flight_schedule_date - INTERVAL '7 days' and fsd.flight_schedule_date
+group by
+    fsd.departure_airport_code,
+    fsd.flight_schedule_date

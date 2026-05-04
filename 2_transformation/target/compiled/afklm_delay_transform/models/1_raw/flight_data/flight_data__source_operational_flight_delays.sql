@@ -4,11 +4,11 @@
 -- Source : table `operational_flight_delays` chargée par dlt depuis l'API AF/KLM.
 -- Grain  : 1 ligne par événement de retard (N lignes possibles par leg).
 -- Rôle   : aucun cast, aucune transformation. La durée (ISO 8601) est parsée en couche int.
-{{ config(schema='raw', materialized='view') }}
+
 select
     id,
-    flight_leg_id,
-    delay_code,
-    delay_duration,
-    delay_reason
-from {{ source('flight_data', 'operational_flight_delays') }}
+    flightLegId,
+    delayCode,
+    delayDuration,
+    delayReason
+from "postgres"."public"."operational_flight_delays"

@@ -10,3 +10,6 @@ select distinct airport_code as airport_key from (
     select arrival_airport_code from {{ ref('flight_data__int_legs_ready') }}
 ) u
 where airport_code is not null
+left join {{ ref('flight_data__int_legs_ready') }} n
+        on u.airport_code = n.airport_code
+)

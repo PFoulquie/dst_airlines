@@ -1,0 +1,888 @@
+[0m15:33:24.932942 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78fb29b0e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78fe3dead0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78fa31bb10>]}
+
+
+============================== 15:33:24.936205 | 73da9efa-3e1d-4b42-9e92-1cdc37a2360c ==============================
+[0m15:33:24.936205 [info ] [MainThread]: Running with dbt=1.11.8
+[0m15:33:24.936900 [debug] [MainThread]: running dbt with arguments {'debug': 'False', 'target_path': 'None', 'log_path': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/logs', 'use_experimental_parser': 'False', 'send_anonymous_usage_stats': 'True', 'cache_selected_only': 'False', 'printer_width': '80', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'write_json': 'True', 'log_format': 'default', 'warn_error': 'None', 'indirect_selection': 'eager', 'invocation_command': 'dbt debug', 'use_colors': 'True', 'partial_parse': 'True', 'no_print': 'None', 'fail_fast': 'False', 'version_check': 'True', 'profiles_dir': '/home/pierre/.dbt', 'quiet': 'False'}
+[0m15:33:24.946367 [info ] [MainThread]: dbt version: 1.11.8
+[0m15:33:24.946896 [info ] [MainThread]: python version: 3.13.5
+[0m15:33:24.947391 [info ] [MainThread]: python path: /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/.venv/bin/python3
+[0m15:33:24.947870 [info ] [MainThread]: os info: Linux-6.12.74+deb13+1-amd64-x86_64-with-glibc2.41
+[0m15:33:24.951320 [info ] [MainThread]: Using profiles dir at /home/pierre/.dbt
+[0m15:33:24.951811 [info ] [MainThread]: Using profiles.yml file at /home/pierre/.dbt/profiles.yml
+[0m15:33:24.952220 [info ] [MainThread]: Using dbt_project.yml file at /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/dbt_project.yml
+[0m15:33:25.103149 [info ] [MainThread]: Configuration:
+[0m15:33:25.103709 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m15:33:25.104179 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m15:33:25.104600 [info ] [MainThread]: Required dependencies:
+[0m15:33:25.105120 [debug] [MainThread]: Executing "git --help"
+[0m15:33:25.107305 [debug] [MainThread]: STDOUT: "b"usage : git [-v | --version] [-h | --help] [-C <chemin>] [-c <nom>=<valeur>]\n           [--exec-path[=<chemin>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<chemin>]\n           [--work-tree=<chemin>] [--namespace=<nom>] [--config-env=<nom>=<var-d-env>] \n           <commande> [<args>]\n\nCi-dessous les commandes Git habituelles dans diverses situations\xc2\xa0:\n\nd\xc3\xa9marrer une zone de travail (voir aussi\xc2\xa0: git help tutorial)\n   clone     Cloner un d\xc3\xa9p\xc3\xb4t dans un nouveau r\xc3\xa9pertoire\n   init      Cr\xc3\xa9er un d\xc3\xa9p\xc3\xb4t Git vide ou r\xc3\xa9initialiser un existant\n\ntravailler sur la modification actuelle (voir aussi\xc2\xa0: git help revisions)\n   add       Ajouter le contenu de fichiers dans l'index\n   mv        D\xc3\xa9placer ou renommer un fichier, un r\xc3\xa9pertoire, ou un lien symbolique\n   restore   Restaurer les fichiers l'arbre de travail\n   rm        Supprimer des fichiers de la copie de travail et de l'index\n\nexaminer l'historique et l'\xc3\xa9tat (voir aussi\xc2\xa0: git help revisions)\n   bisect    Trouver par recherche binaire la modification qui a introduit un bogue\n   diff      Afficher les changements entre les validations, entre validation et copie de travail, etc\n   grep      Afficher les lignes correspondant \xc3\xa0 un motif\n   log       Afficher l'historique des validations\n   show      Afficher diff\xc3\xa9rents types d'objets\n   status    Afficher l'\xc3\xa9tat de la copie de travail\n\nagrandir, marquer et modifier votre historique\n   branch    Lister, cr\xc3\xa9er ou supprimer des branches\n   commit    Enregistrer les modifications dans le d\xc3\xa9p\xc3\xb4t\n   merge     Fusionner deux ou plusieurs historiques de d\xc3\xa9veloppement ensemble\n   rebase    R\xc3\xa9application des commits sur le sommet de l'autre base\n   reset     R\xc3\xa9initialiser la HEAD courante \xc3\xa0 l'\xc3\xa9tat sp\xc3\xa9cifi\xc3\xa9\n   switch    Basculer de branche\n   tag       Cr\xc3\xa9er, lister, supprimer ou v\xc3\xa9rifier un objet d'\xc3\xa9tiquette sign\xc3\xa9 avec GPG\n\ncollaborer (voir aussi\xc2\xa0: git help workflows)\n   fetch     T\xc3\xa9l\xc3\xa9charger les objets et r\xc3\xa9f\xc3\xa9rences depuis un autre d\xc3\xa9p\xc3\xb4t\n   pull      Rapatrier et int\xc3\xa9grer un autre d\xc3\xa9p\xc3\xb4t ou une branche locale\n   push      Mettre \xc3\xa0 jour les r\xc3\xa9f\xc3\xa9rences distantes ainsi que les objets associ\xc3\xa9s\n\n'git help -a' et 'git help -g' listent les sous-commandes disponibles et\nquelques concepts. Voir 'git help <commande>' ou 'git help <concept>'\npour en lire plus \xc3\xa0 propos d'une commande sp\xc3\xa9cifique ou d'un concept.\nVoir 'git help git' pour un survol du syst\xc3\xa8me.\n""
+[0m15:33:25.107780 [debug] [MainThread]: STDERR: "b''"
+[0m15:33:25.108120 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m15:33:25.108579 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m15:33:25.109005 [info ] [MainThread]: [31m1 check failed:[0m
+[0m15:33:25.109374 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  Could not find profile named 'afklm_delay_pipeline'
+
+
+[0m15:33:25.110436 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.25292596, "process_in_blocks": "0", "process_kernel_time": 0.143541, "process_mem_max_rss": "108772", "process_out_blocks": "16", "process_user_time": 1.603526}
+[0m15:33:25.110971 [debug] [MainThread]: Command `dbt debug` failed at 15:33:25.110854 after 0.25 seconds
+[0m15:33:25.111440 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78faf67a80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78f9f35010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78fa093570>]}
+[0m15:33:25.111865 [debug] [MainThread]: Flushing usage events
+[0m15:33:25.509451 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:41:40.747006 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbba09730e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbba3b3aad0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbb9f9f3b10>]}
+
+
+============================== 15:41:40.797635 | 0654fe47-689d-4287-b00b-339eee57b0a4 ==============================
+[0m15:41:40.797635 [info ] [MainThread]: Running with dbt=1.11.8
+[0m15:41:40.798355 [debug] [MainThread]: running dbt with arguments {'indirect_selection': 'eager', 'static_parser': 'True', 'printer_width': '80', 'no_print': 'None', 'log_path': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/logs', 'profiles_dir': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation', 'log_format': 'default', 'quiet': 'False', 'debug': 'False', 'empty': 'None', 'write_json': 'True', 'use_colors': 'True', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True', 'version_check': 'True', 'invocation_command': 'dbt debug', 'cache_selected_only': 'False', 'log_cache_events': 'False', 'fail_fast': 'False', 'warn_error': 'None', 'use_experimental_parser': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True'}
+[0m15:41:40.835279 [info ] [MainThread]: dbt version: 1.11.8
+[0m15:41:40.835813 [info ] [MainThread]: python version: 3.13.5
+[0m15:41:40.836289 [info ] [MainThread]: python path: /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/.venv/bin/python3
+[0m15:41:40.836720 [info ] [MainThread]: os info: Linux-6.12.74+deb13+1-amd64-x86_64-with-glibc2.41
+[0m15:41:40.839853 [info ] [MainThread]: Using profiles dir at /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation
+[0m15:41:40.840483 [info ] [MainThread]: Using profiles.yml file at /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/profiles.yml
+[0m15:41:40.840941 [info ] [MainThread]: Using dbt_project.yml file at /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/dbt_project.yml
+[0m15:41:40.990411 [info ] [MainThread]: Configuration:
+[0m15:41:40.990960 [info ] [MainThread]:   profiles.yml file [[31mERROR invalid[0m]
+[0m15:41:40.991471 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m15:41:40.991960 [info ] [MainThread]: Required dependencies:
+[0m15:41:40.992499 [debug] [MainThread]: Executing "git --help"
+[0m15:41:40.994776 [debug] [MainThread]: STDOUT: "b"usage : git [-v | --version] [-h | --help] [-C <chemin>] [-c <nom>=<valeur>]\n           [--exec-path[=<chemin>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<chemin>]\n           [--work-tree=<chemin>] [--namespace=<nom>] [--config-env=<nom>=<var-d-env>] \n           <commande> [<args>]\n\nCi-dessous les commandes Git habituelles dans diverses situations\xc2\xa0:\n\nd\xc3\xa9marrer une zone de travail (voir aussi\xc2\xa0: git help tutorial)\n   clone     Cloner un d\xc3\xa9p\xc3\xb4t dans un nouveau r\xc3\xa9pertoire\n   init      Cr\xc3\xa9er un d\xc3\xa9p\xc3\xb4t Git vide ou r\xc3\xa9initialiser un existant\n\ntravailler sur la modification actuelle (voir aussi\xc2\xa0: git help revisions)\n   add       Ajouter le contenu de fichiers dans l'index\n   mv        D\xc3\xa9placer ou renommer un fichier, un r\xc3\xa9pertoire, ou un lien symbolique\n   restore   Restaurer les fichiers l'arbre de travail\n   rm        Supprimer des fichiers de la copie de travail et de l'index\n\nexaminer l'historique et l'\xc3\xa9tat (voir aussi\xc2\xa0: git help revisions)\n   bisect    Trouver par recherche binaire la modification qui a introduit un bogue\n   diff      Afficher les changements entre les validations, entre validation et copie de travail, etc\n   grep      Afficher les lignes correspondant \xc3\xa0 un motif\n   log       Afficher l'historique des validations\n   show      Afficher diff\xc3\xa9rents types d'objets\n   status    Afficher l'\xc3\xa9tat de la copie de travail\n\nagrandir, marquer et modifier votre historique\n   branch    Lister, cr\xc3\xa9er ou supprimer des branches\n   commit    Enregistrer les modifications dans le d\xc3\xa9p\xc3\xb4t\n   merge     Fusionner deux ou plusieurs historiques de d\xc3\xa9veloppement ensemble\n   rebase    R\xc3\xa9application des commits sur le sommet de l'autre base\n   reset     R\xc3\xa9initialiser la HEAD courante \xc3\xa0 l'\xc3\xa9tat sp\xc3\xa9cifi\xc3\xa9\n   switch    Basculer de branche\n   tag       Cr\xc3\xa9er, lister, supprimer ou v\xc3\xa9rifier un objet d'\xc3\xa9tiquette sign\xc3\xa9 avec GPG\n\ncollaborer (voir aussi\xc2\xa0: git help workflows)\n   fetch     T\xc3\xa9l\xc3\xa9charger les objets et r\xc3\xa9f\xc3\xa9rences depuis un autre d\xc3\xa9p\xc3\xb4t\n   pull      Rapatrier et int\xc3\xa9grer un autre d\xc3\xa9p\xc3\xb4t ou une branche locale\n   push      Mettre \xc3\xa0 jour les r\xc3\xa9f\xc3\xa9rences distantes ainsi que les objets associ\xc3\xa9s\n\n'git help -a' et 'git help -g' listent les sous-commandes disponibles et\nquelques concepts. Voir 'git help <commande>' ou 'git help <concept>'\npour en lire plus \xc3\xa0 propos d'une commande sp\xc3\xa9cifique ou d'un concept.\nVoir 'git help git' pour un survol du syst\xc3\xa8me.\n""
+[0m15:41:40.995268 [debug] [MainThread]: STDERR: "b''"
+[0m15:41:40.995755 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m15:41:40.996222 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m15:41:40.996628 [info ] [MainThread]: [31m1 check failed:[0m
+[0m15:41:40.997116 [info ] [MainThread]: Profile loading failed for the following reason:
+Runtime Error
+  Could not find profile named 'afklm_delay_pipeline'
+
+
+[0m15:41:40.998139 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.32764462, "process_in_blocks": "12960", "process_kernel_time": 0.137248, "process_mem_max_rss": "108896", "process_out_blocks": "32", "process_user_time": 1.626793}
+[0m15:41:40.998708 [debug] [MainThread]: Command `dbt debug` failed at 15:41:40.998605 after 0.33 seconds
+[0m15:41:40.999149 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbba063fa80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbb9f825010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbb9f767570>]}
+[0m15:41:40.999617 [debug] [MainThread]: Flushing usage events
+[0m15:41:41.413665 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:41:55.955779 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f89f86730e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f89fb5a6ad0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f89f76f3b10>]}
+
+
+============================== 15:41:55.959245 | e354d6a8-6e1d-45e4-9aba-b6d3b79b5c74 ==============================
+[0m15:41:55.959245 [info ] [MainThread]: Running with dbt=1.11.8
+[0m15:41:55.959898 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'cache_selected_only': 'False', 'debug': 'False', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'static_parser': 'True', 'warn_error': 'None', 'empty': 'None', 'profiles_dir': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation', 'indirect_selection': 'eager', 'introspect': 'True', 'partial_parse': 'True', 'log_path': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/logs', 'no_print': 'None', 'use_colors': 'True', 'invocation_command': 'dbt debug', 'target_path': 'None', 'version_check': 'True', 'use_experimental_parser': 'False', 'log_format': 'default', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'fail_fast': 'False'}
+[0m15:41:55.969525 [info ] [MainThread]: dbt version: 1.11.8
+[0m15:41:55.970333 [info ] [MainThread]: python version: 3.13.5
+[0m15:41:55.970803 [info ] [MainThread]: python path: /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/.venv/bin/python3
+[0m15:41:55.971185 [info ] [MainThread]: os info: Linux-6.12.74+deb13+1-amd64-x86_64-with-glibc2.41
+[0m15:41:56.363089 [info ] [MainThread]: Using profiles dir at /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation
+[0m15:41:56.363726 [info ] [MainThread]: Using profiles.yml file at /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/profiles.yml
+[0m15:41:56.364247 [info ] [MainThread]: Using dbt_project.yml file at /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/dbt_project.yml
+[0m15:41:56.365267 [info ] [MainThread]: adapter type: postgres
+[0m15:41:56.365785 [info ] [MainThread]: adapter version: 1.10.0
+[0m15:41:56.516796 [info ] [MainThread]: Configuration:
+[0m15:41:56.517305 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m15:41:56.517765 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m15:41:56.518221 [info ] [MainThread]: Required dependencies:
+[0m15:41:56.518727 [debug] [MainThread]: Executing "git --help"
+[0m15:41:56.521107 [debug] [MainThread]: STDOUT: "b"usage : git [-v | --version] [-h | --help] [-C <chemin>] [-c <nom>=<valeur>]\n           [--exec-path[=<chemin>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<chemin>]\n           [--work-tree=<chemin>] [--namespace=<nom>] [--config-env=<nom>=<var-d-env>] \n           <commande> [<args>]\n\nCi-dessous les commandes Git habituelles dans diverses situations\xc2\xa0:\n\nd\xc3\xa9marrer une zone de travail (voir aussi\xc2\xa0: git help tutorial)\n   clone     Cloner un d\xc3\xa9p\xc3\xb4t dans un nouveau r\xc3\xa9pertoire\n   init      Cr\xc3\xa9er un d\xc3\xa9p\xc3\xb4t Git vide ou r\xc3\xa9initialiser un existant\n\ntravailler sur la modification actuelle (voir aussi\xc2\xa0: git help revisions)\n   add       Ajouter le contenu de fichiers dans l'index\n   mv        D\xc3\xa9placer ou renommer un fichier, un r\xc3\xa9pertoire, ou un lien symbolique\n   restore   Restaurer les fichiers l'arbre de travail\n   rm        Supprimer des fichiers de la copie de travail et de l'index\n\nexaminer l'historique et l'\xc3\xa9tat (voir aussi\xc2\xa0: git help revisions)\n   bisect    Trouver par recherche binaire la modification qui a introduit un bogue\n   diff      Afficher les changements entre les validations, entre validation et copie de travail, etc\n   grep      Afficher les lignes correspondant \xc3\xa0 un motif\n   log       Afficher l'historique des validations\n   show      Afficher diff\xc3\xa9rents types d'objets\n   status    Afficher l'\xc3\xa9tat de la copie de travail\n\nagrandir, marquer et modifier votre historique\n   branch    Lister, cr\xc3\xa9er ou supprimer des branches\n   commit    Enregistrer les modifications dans le d\xc3\xa9p\xc3\xb4t\n   merge     Fusionner deux ou plusieurs historiques de d\xc3\xa9veloppement ensemble\n   rebase    R\xc3\xa9application des commits sur le sommet de l'autre base\n   reset     R\xc3\xa9initialiser la HEAD courante \xc3\xa0 l'\xc3\xa9tat sp\xc3\xa9cifi\xc3\xa9\n   switch    Basculer de branche\n   tag       Cr\xc3\xa9er, lister, supprimer ou v\xc3\xa9rifier un objet d'\xc3\xa9tiquette sign\xc3\xa9 avec GPG\n\ncollaborer (voir aussi\xc2\xa0: git help workflows)\n   fetch     T\xc3\xa9l\xc3\xa9charger les objets et r\xc3\xa9f\xc3\xa9rences depuis un autre d\xc3\xa9p\xc3\xb4t\n   pull      Rapatrier et int\xc3\xa9grer un autre d\xc3\xa9p\xc3\xb4t ou une branche locale\n   push      Mettre \xc3\xa0 jour les r\xc3\xa9f\xc3\xa9rences distantes ainsi que les objets associ\xc3\xa9s\n\n'git help -a' et 'git help -g' listent les sous-commandes disponibles et\nquelques concepts. Voir 'git help <commande>' ou 'git help <concept>'\npour en lire plus \xc3\xa0 propos d'une commande sp\xc3\xa9cifique ou d'un concept.\nVoir 'git help git' pour un survol du syst\xc3\xa8me.\n""
+[0m15:41:56.521591 [debug] [MainThread]: STDERR: "b''"
+[0m15:41:56.521993 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m15:41:56.522426 [info ] [MainThread]: Connection:
+[0m15:41:56.522845 [info ] [MainThread]:   host: aws-1-eu-west-1.pooler.supabase.com
+[0m15:41:56.523235 [info ] [MainThread]:   port: 6543
+[0m15:41:56.523648 [info ] [MainThread]:   user: postgres.amtxaysrmhlznfwqemdu
+[0m15:41:56.524038 [info ] [MainThread]:   database: postgres
+[0m15:41:56.524428 [info ] [MainThread]:   schema: silver
+[0m15:41:56.524839 [info ] [MainThread]:   connect_timeout: 10
+[0m15:41:56.525229 [info ] [MainThread]:   role: None
+[0m15:41:56.525609 [info ] [MainThread]:   search_path: None
+[0m15:41:56.525980 [info ] [MainThread]:   keepalives_idle: 0
+[0m15:41:56.526347 [info ] [MainThread]:   sslmode: None
+[0m15:41:56.526717 [info ] [MainThread]:   sslcert: None
+[0m15:41:56.527090 [info ] [MainThread]:   sslkey: None
+[0m15:41:56.527419 [info ] [MainThread]:   sslrootcert: None
+[0m15:41:56.527761 [info ] [MainThread]:   application_name: dbt
+[0m15:41:56.528143 [info ] [MainThread]:   retries: 1
+[0m15:41:56.528682 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m15:41:56.701579 [debug] [MainThread]: Acquiring new postgres connection 'debug'
+[0m15:41:56.926982 [debug] [MainThread]: Using postgres connection "debug"
+[0m15:41:56.927455 [debug] [MainThread]: On debug: select 1 as id
+[0m15:41:56.927842 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m15:41:57.326619 [debug] [MainThread]: SQL status: SELECT 1 in 0.399 seconds
+[0m15:41:57.327674 [debug] [MainThread]: On debug: Close
+[0m15:41:57.328216 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m15:41:57.328670 [info ] [MainThread]: [32mAll checks passed![0m
+[0m15:41:57.329886 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": true, "command_wall_clock_time": 1.4852095, "process_in_blocks": "3656", "process_kernel_time": 0.143463, "process_mem_max_rss": "123568", "process_out_blocks": "16", "process_user_time": 1.789313}
+[0m15:41:57.330433 [debug] [MainThread]: Command `dbt debug` succeeded at 15:41:57.330312 after 1.49 seconds
+[0m15:41:57.330812 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m15:41:57.331250 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f89f5f790f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f89f6bc60f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f89f6bac380>]}
+[0m15:41:57.331728 [debug] [MainThread]: Flushing usage events
+[0m15:41:57.712100 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:42:32.933451 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78b006b0e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78aef73d90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78aef73b10>]}
+
+
+============================== 15:42:32.936865 | 68434def-fe6f-4234-9803-d4e77fcbbd24 ==============================
+[0m15:42:32.936865 [info ] [MainThread]: Running with dbt=1.11.8
+[0m15:42:32.937645 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'partial_parse': 'True', 'use_experimental_parser': 'False', 'printer_width': '80', 'use_colors': 'True', 'target_path': 'None', 'debug': 'False', 'quiet': 'False', 'introspect': 'True', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'invocation_command': 'dbt run', 'cache_selected_only': 'False', 'write_json': 'True', 'fail_fast': 'False', 'indirect_selection': 'eager', 'profiles_dir': '/home/pierre/.dbt', 'empty': 'False', 'log_cache_events': 'False', 'static_parser': 'True', 'version_check': 'True', 'log_format': 'default', 'send_anonymous_usage_stats': 'True', 'log_path': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/logs'}
+[0m15:42:32.940320 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'afklm_delay_pipeline'
+[0m15:42:32.941308 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.09391236, "process_in_blocks": "8", "process_kernel_time": 0.122646, "process_mem_max_rss": "106028", "process_out_blocks": "8", "process_user_time": 1.531097}
+[0m15:42:32.941852 [debug] [MainThread]: Command `dbt run` failed at 15:42:32.941744 after 0.09 seconds
+[0m15:42:32.942348 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78aefe8050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78aefb15b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f78aef8d9d0>]}
+[0m15:42:32.942841 [debug] [MainThread]: Flushing usage events
+[0m15:42:33.343050 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:43:26.969766 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effad0630e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effabf6fd90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effabf6fb10>]}
+
+
+============================== 15:43:26.973143 | 3b732eb6-67a5-49c3-9ca2-a078af7415a3 ==============================
+[0m15:43:26.973143 [info ] [MainThread]: Running with dbt=1.11.8
+[0m15:43:26.973888 [debug] [MainThread]: running dbt with arguments {'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'quiet': 'False', 'profiles_dir': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation', 'cache_selected_only': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'no_print': 'None', 'debug': 'False', 'version_check': 'True', 'indirect_selection': 'eager', 'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'log_cache_events': 'False', 'printer_width': '80', 'warn_error': 'None', 'empty': 'False', 'target_path': 'None', 'partial_parse': 'True', 'introspect': 'True', 'invocation_command': 'dbt run', 'log_path': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/logs', 'log_format': 'default', 'use_experimental_parser': 'False', 'static_parser': 'True'}
+[0m15:43:27.244185 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '3b732eb6-67a5-49c3-9ca2-a078af7415a3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effacdc23f0>]}
+[0m15:43:27.328016 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '3b732eb6-67a5-49c3-9ca2-a078af7415a3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effad9dfdf0>]}
+[0m15:43:27.328841 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m15:43:27.421572 [debug] [MainThread]: checksum: 7d524ac048c2100769df89d592e662e060a73ca564e31bd9c2a37efdfe8d8ab6, vars: {}, profile: , target: , version: 1.11.8
+[0m15:43:27.422286 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m15:43:27.422771 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '3b732eb6-67a5-49c3-9ca2-a078af7415a3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effac0f5c50>]}
+[0m15:43:28.752467 [warn ] [MainThread]: The configured adapter does not support metadata-based freshness. A loaded_at_field must be specified for source 'flight_data.operational_flights'.
+[0m15:43:28.754640 [warn ] [MainThread]: The configured adapter does not support metadata-based freshness. A loaded_at_field must be specified for source 'flight_data.operational_flight_legs'.
+[0m15:43:28.755722 [warn ] [MainThread]: The configured adapter does not support metadata-based freshness. A loaded_at_field must be specified for source 'flight_data.operational_flight_delays'.
+[0m15:43:28.842749 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '3b732eb6-67a5-49c3-9ca2-a078af7415a3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effabcdbf20>]}
+[0m15:43:28.948561 [debug] [MainThread]: Wrote artifact WritableManifest to /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/target/manifest.json
+[0m15:43:28.950228 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/target/semantic_manifest.json
+[0m15:43:29.004248 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '3b732eb6-67a5-49c3-9ca2-a078af7415a3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effa99b75b0>]}
+[0m15:43:29.004834 [info ] [MainThread]: Found 13 models, 3 sources, 466 macros
+[0m15:43:29.005319 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '3b732eb6-67a5-49c3-9ca2-a078af7415a3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effaa9d9cc0>]}
+[0m15:43:29.007429 [info ] [MainThread]: 
+[0m15:43:29.007894 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m15:43:29.008390 [info ] [MainThread]: 
+[0m15:43:29.009096 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m15:43:29.014336 [debug] [ThreadPool]: Acquiring new postgres connection 'list_postgres'
+[0m15:43:29.021095 [debug] [ThreadPool]: Acquiring new postgres connection 'list_postgres'
+[0m15:43:29.032125 [debug] [ThreadPool]: Acquiring new postgres connection 'list_postgres'
+[0m15:43:29.063618 [debug] [ThreadPool]: Using postgres connection "list_postgres"
+[0m15:43:29.064121 [debug] [ThreadPool]: On list_postgres: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m15:43:29.064502 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:43:29.065010 [debug] [ThreadPool]: Using postgres connection "list_postgres"
+[0m15:43:29.065602 [debug] [ThreadPool]: Using postgres connection "list_postgres"
+[0m15:43:29.066092 [debug] [ThreadPool]: On list_postgres: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m15:43:29.066710 [debug] [ThreadPool]: On list_postgres: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m15:43:29.067323 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:43:29.067939 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:43:29.403635 [debug] [ThreadPool]: SQL status: SELECT 132 in 0.336 seconds
+[0m15:43:29.405592 [debug] [ThreadPool]: On list_postgres: Close
+[0m15:43:29.406141 [debug] [ThreadPool]: SQL status: SELECT 132 in 0.342 seconds
+[0m15:43:29.406556 [debug] [ThreadPool]: SQL status: SELECT 132 in 0.339 seconds
+[0m15:43:29.408146 [debug] [ThreadPool]: On list_postgres: Close
+[0m15:43:29.410119 [debug] [ThreadPool]: On list_postgres: Close
+[0m15:43:29.411298 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_postgres, now create_postgres_silver_mart)
+[0m15:43:29.411810 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_postgres, now create_postgres_silver_int)
+[0m15:43:29.413757 [debug] [ThreadPool]: Creating schema "database: "postgres"
+schema: "silver_int"
+"
+[0m15:43:29.413167 [debug] [ThreadPool]: Creating schema "database: "postgres"
+schema: "silver_mart"
+"
+[0m15:43:29.412482 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_postgres, now create_postgres_silver_raw)
+[0m15:43:29.421235 [debug] [ThreadPool]: Using postgres connection "create_postgres_silver_mart"
+[0m15:43:29.421885 [debug] [ThreadPool]: Creating schema "database: "postgres"
+schema: "silver_raw"
+"
+[0m15:43:29.419054 [debug] [ThreadPool]: Using postgres connection "create_postgres_silver_int"
+[0m15:43:29.422634 [debug] [ThreadPool]: On create_postgres_silver_mart: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "create_postgres_silver_mart"} */
+create schema if not exists "silver_mart"
+[0m15:43:29.424214 [debug] [ThreadPool]: Using postgres connection "create_postgres_silver_raw"
+[0m15:43:29.424664 [debug] [ThreadPool]: On create_postgres_silver_int: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "create_postgres_silver_int"} */
+create schema if not exists "silver_int"
+[0m15:43:29.425156 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:43:29.425625 [debug] [ThreadPool]: On create_postgres_silver_raw: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "create_postgres_silver_raw"} */
+create schema if not exists "silver_raw"
+[0m15:43:29.426672 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:43:29.426059 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:43:29.778214 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.353 seconds
+[0m15:43:29.779291 [debug] [ThreadPool]: On create_postgres_silver_mart: COMMIT
+[0m15:43:29.779778 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.354 seconds
+[0m15:43:29.780213 [debug] [ThreadPool]: Using postgres connection "create_postgres_silver_mart"
+[0m15:43:29.781218 [debug] [ThreadPool]: On create_postgres_silver_int: COMMIT
+[0m15:43:29.781713 [debug] [ThreadPool]: On create_postgres_silver_mart: COMMIT
+[0m15:43:29.782193 [debug] [ThreadPool]: Using postgres connection "create_postgres_silver_int"
+[0m15:43:29.782720 [debug] [ThreadPool]: On create_postgres_silver_int: COMMIT
+[0m15:43:29.790515 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.364 seconds
+[0m15:43:29.791445 [debug] [ThreadPool]: On create_postgres_silver_raw: COMMIT
+[0m15:43:29.791841 [debug] [ThreadPool]: Using postgres connection "create_postgres_silver_raw"
+[0m15:43:29.792213 [debug] [ThreadPool]: On create_postgres_silver_raw: COMMIT
+[0m15:43:29.823272 [debug] [ThreadPool]: SQL status: COMMIT in 0.040 seconds
+[0m15:43:29.823785 [debug] [ThreadPool]: SQL status: COMMIT in 0.041 seconds
+[0m15:43:29.824275 [debug] [ThreadPool]: On create_postgres_silver_int: Close
+[0m15:43:29.824718 [debug] [ThreadPool]: On create_postgres_silver_mart: Close
+[0m15:43:29.832748 [debug] [ThreadPool]: SQL status: COMMIT in 0.040 seconds
+[0m15:43:29.833274 [debug] [ThreadPool]: On create_postgres_silver_raw: Close
+[0m15:43:29.835830 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_postgres_silver_mart, now list_postgres_silver_mart)
+[0m15:43:29.840753 [debug] [ThreadPool]: Using postgres connection "list_postgres_silver_mart"
+[0m15:43:29.841357 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_postgres_silver_int, now list_postgres_silver_int)
+[0m15:43:29.841792 [debug] [ThreadPool]: On list_postgres_silver_mart: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres_silver_mart"} */
+select
+      'postgres' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'silver_mart'
+    union all
+    select
+      'postgres' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'silver_mart'
+    union all
+    select
+      'postgres' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'silver_mart'
+  
+[0m15:43:29.842442 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_postgres_silver_raw, now list_postgres_silver_raw)
+[0m15:43:29.846514 [debug] [ThreadPool]: Using postgres connection "list_postgres_silver_int"
+[0m15:43:29.847087 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:43:29.848577 [debug] [ThreadPool]: Using postgres connection "list_postgres_silver_raw"
+[0m15:43:29.849112 [debug] [ThreadPool]: On list_postgres_silver_int: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres_silver_int"} */
+select
+      'postgres' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'silver_int'
+    union all
+    select
+      'postgres' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'silver_int'
+    union all
+    select
+      'postgres' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'silver_int'
+  
+[0m15:43:29.849821 [debug] [ThreadPool]: On list_postgres_silver_raw: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres_silver_raw"} */
+select
+      'postgres' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'silver_raw'
+    union all
+    select
+      'postgres' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'silver_raw'
+    union all
+    select
+      'postgres' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'silver_raw'
+  
+[0m15:43:29.850282 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:43:29.850859 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:43:30.192550 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.345 seconds
+[0m15:43:30.193899 [debug] [ThreadPool]: On list_postgres_silver_mart: ROLLBACK
+[0m15:43:30.194503 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.344 seconds
+[0m15:43:30.195841 [debug] [ThreadPool]: On list_postgres_silver_int: ROLLBACK
+[0m15:43:30.196378 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.345 seconds
+[0m15:43:30.197685 [debug] [ThreadPool]: On list_postgres_silver_raw: ROLLBACK
+[0m15:43:30.230399 [debug] [ThreadPool]: On list_postgres_silver_mart: Close
+[0m15:43:30.234142 [debug] [ThreadPool]: On list_postgres_silver_int: Close
+[0m15:43:30.234667 [debug] [ThreadPool]: On list_postgres_silver_raw: Close
+[0m15:43:30.239960 [debug] [MainThread]: Using postgres connection "master"
+[0m15:43:30.240506 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m15:43:30.241465 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m15:43:30.568745 [debug] [MainThread]: SQL status: SELECT 1 in 0.327 seconds
+[0m15:43:30.570113 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '3b732eb6-67a5-49c3-9ca2-a078af7415a3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effa958d490>]}
+[0m15:43:30.570635 [debug] [MainThread]: On master: ROLLBACK
+[0m15:43:30.606116 [debug] [MainThread]: On master: COMMIT
+[0m15:43:30.606588 [debug] [MainThread]: Using postgres connection "master"
+[0m15:43:30.606989 [debug] [MainThread]: On master: COMMIT
+[0m15:43:30.680129 [debug] [MainThread]: SQL status: COMMIT in 0.073 seconds
+[0m15:43:30.680614 [debug] [MainThread]: On master: Close
+[0m15:43:30.702865 [debug] [Thread-3 (]: Began running node model.afklm_delay_transform.flight_data__source_operational_flights
+[0m15:43:30.703431 [debug] [Thread-1 (]: Began running node model.afklm_delay_transform.flight_data__source_operational_flight_delays
+[0m15:43:30.703919 [debug] [Thread-2 (]: Began running node model.afklm_delay_transform.flight_data__source_operational_flight_legs
+[0m15:43:30.704479 [info ] [Thread-3 (]: 3 of 13 START sql view model silver_raw.flight_data__source_operational_flights  [RUN]
+[0m15:43:30.706257 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly list_postgres_silver_raw, now model.afklm_delay_transform.flight_data__source_operational_flights)
+[0m15:43:30.706745 [debug] [Thread-3 (]: Began compiling node model.afklm_delay_transform.flight_data__source_operational_flights
+[0m15:43:30.705190 [info ] [Thread-1 (]: 1 of 13 START sql view model silver_raw.flight_data__source_operational_flight_delays  [RUN]
+[0m15:43:30.712782 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_postgres_silver_int, now model.afklm_delay_transform.flight_data__source_operational_flight_delays)
+[0m15:43:30.716112 [debug] [Thread-3 (]: Writing injected SQL for node "model.afklm_delay_transform.flight_data__source_operational_flights"
+[0m15:43:30.716787 [debug] [Thread-1 (]: Began compiling node model.afklm_delay_transform.flight_data__source_operational_flight_delays
+[0m15:43:30.705741 [info ] [Thread-2 (]: 2 of 13 START sql view model silver_raw.flight_data__source_operational_flight_legs  [RUN]
+[0m15:43:30.720436 [debug] [Thread-1 (]: Writing injected SQL for node "model.afklm_delay_transform.flight_data__source_operational_flight_delays"
+[0m15:43:30.721897 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_postgres_silver_mart, now model.afklm_delay_transform.flight_data__source_operational_flight_legs)
+[0m15:43:30.723251 [debug] [Thread-2 (]: Began compiling node model.afklm_delay_transform.flight_data__source_operational_flight_legs
+[0m15:43:30.722696 [debug] [Thread-3 (]: Began executing node model.afklm_delay_transform.flight_data__source_operational_flights
+[0m15:43:30.727134 [debug] [Thread-2 (]: Writing injected SQL for node "model.afklm_delay_transform.flight_data__source_operational_flight_legs"
+[0m15:43:30.727985 [debug] [Thread-1 (]: Began executing node model.afklm_delay_transform.flight_data__source_operational_flight_delays
+[0m15:43:30.768378 [debug] [Thread-2 (]: Began executing node model.afklm_delay_transform.flight_data__source_operational_flight_legs
+[0m15:43:30.775814 [debug] [Thread-3 (]: Writing runtime sql for node "model.afklm_delay_transform.flight_data__source_operational_flights"
+[0m15:43:30.776451 [debug] [Thread-2 (]: Writing runtime sql for node "model.afklm_delay_transform.flight_data__source_operational_flight_legs"
+[0m15:43:30.779654 [debug] [Thread-1 (]: Writing runtime sql for node "model.afklm_delay_transform.flight_data__source_operational_flight_delays"
+[0m15:43:30.781251 [debug] [Thread-1 (]: Using postgres connection "model.afklm_delay_transform.flight_data__source_operational_flight_delays"
+[0m15:43:30.781842 [debug] [Thread-2 (]: Using postgres connection "model.afklm_delay_transform.flight_data__source_operational_flight_legs"
+[0m15:43:30.782469 [debug] [Thread-1 (]: On model.afklm_delay_transform.flight_data__source_operational_flight_delays: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "node_id": "model.afklm_delay_transform.flight_data__source_operational_flight_delays"} */
+
+  create view "postgres"."silver_raw"."flight_data__source_operational_flight_delays__dbt_tmp"
+    
+    
+  as (
+    -- raw.flight_data__source_operational_flight_delays
+-- Entité : un événement de retard sur un leg. Un même leg peut avoir plusieurs codes retard
+--          (ex. retard météo + retard technique = 2 lignes pour le même leg).
+-- Source : table `operational_flight_delays` chargée par dlt depuis l'API AF/KLM.
+-- Grain  : 1 ligne par événement de retard (N lignes possibles par leg).
+-- Rôle   : aucun cast, aucune transformation. La durée (ISO 8601) est parsée en couche int.
+
+select
+    id,
+    flightLegId,
+    delayCode,
+    delayDuration,
+    delayReason
+from "postgres"."public"."operational_flight_delays"
+  );
+[0m15:43:30.783124 [debug] [Thread-2 (]: On model.afklm_delay_transform.flight_data__source_operational_flight_legs: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "node_id": "model.afklm_delay_transform.flight_data__source_operational_flight_legs"} */
+
+  create view "postgres"."silver_raw"."flight_data__source_operational_flight_legs__dbt_tmp"
+    
+    
+  as (
+    -- raw.flight_data__source_operational_flight_legs
+-- Entité : un leg = un tronçon physique d'un vol entre deux aéroports (décollage → atterrissage).
+-- Un vol peut avoir plusieurs legs (ex. CDG → NBO → JNB = 2 legs pour le même vol).
+-- Source : table `operational_flight_legs` chargée par dlt depuis l'API AF/KLM.
+-- Grain  : 1 ligne par leg (leg_order distingue les tronçons d'un même vol).
+-- Rôle   : cast des timestamps en timestamptz. Aucune transformation métier.
+
+select
+    id,
+    flightId,
+    legOrder,
+    departureAirportCode,
+    arrivalAirportCode,
+    departureAirportName,
+    arrivalAirportName,
+    publishedStatus,
+    scheduledDeparture::timestamptz as scheduledDeparture,
+    actualDeparture::timestamptz as actualDeparture,
+    scheduledArrival::timestamptz as scheduledArrival,
+    actualArrival::timestamptz as actualArrival,
+    scheduledFlightDuration,
+    cancelled,
+    aircraftCode,
+    aircraftName,
+    departureCityCode,
+    departureCityName,
+    departureCountryCode,
+    departureCountryName,
+    arrivalCityCode,
+    arrivalCityName,
+    arrivalCountryCode,
+    arrivalCountryName
+from "postgres"."public"."operational_flight_legs"
+  );
+[0m15:43:30.783663 [debug] [Thread-3 (]: Using postgres connection "model.afklm_delay_transform.flight_data__source_operational_flights"
+[0m15:43:30.784164 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m15:43:30.784653 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m15:43:30.785233 [debug] [Thread-3 (]: On model.afklm_delay_transform.flight_data__source_operational_flights: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "node_id": "model.afklm_delay_transform.flight_data__source_operational_flights"} */
+
+  create view "postgres"."silver_raw"."flight_data__source_operational_flights__dbt_tmp"
+    
+    
+  as (
+    -- raw.flight_data__source_operational_flights
+-- Entité : un vol = une combinaison (numéro de vol, date, compagnie).
+-- Un vol peut être composé de plusieurs legs (tronçons physiques).
+-- Source : table `operational_flights` chargée par dlt depuis l'API AF/KLM.
+-- Grain  : 1 ligne par vol.
+-- Rôle   : typage uniquement (int, date, timestamptz). Aucune transformation métier.
+
+select
+    id,
+    flightNumber::int as flightNumber,
+    flightScheduleDate::date as flightScheduleDate,
+    airlineCode,
+    airlineName,
+    haul,
+    route,
+    flightStatusPublic,
+    fetchedAt::timestamptz as fetchedAt
+from "postgres"."public"."operational_flights"
+  );
+[0m15:43:30.786186 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m15:43:31.096189 [debug] [Thread-1 (]: Postgres adapter: Postgres error: column "flightlegid" does not exist
+LINE 16:     flightLegId,
+             ^
+HINT:  Perhaps you meant to reference the column "operational_flight_delays.flight_leg_id".
+
+[0m15:43:31.096784 [debug] [Thread-1 (]: On model.afklm_delay_transform.flight_data__source_operational_flight_delays: ROLLBACK
+[0m15:43:31.117504 [debug] [Thread-2 (]: Postgres adapter: Postgres error: column "flightid" does not exist
+LINE 16:     flightId,
+             ^
+HINT:  Perhaps you meant to reference the column "operational_flight_legs.flight_id".
+
+[0m15:43:31.117999 [debug] [Thread-2 (]: On model.afklm_delay_transform.flight_data__source_operational_flight_legs: ROLLBACK
+[0m15:43:31.125485 [debug] [Thread-3 (]: Postgres adapter: Postgres error: column "flightnumber" does not exist
+LINE 16:     flightNumber::int as flightNumber,
+             ^
+HINT:  Perhaps you meant to reference the column "operational_flights.flight_number".
+
+[0m15:43:31.125971 [debug] [Thread-3 (]: On model.afklm_delay_transform.flight_data__source_operational_flights: ROLLBACK
+[0m15:43:31.133474 [debug] [Thread-1 (]: On model.afklm_delay_transform.flight_data__source_operational_flight_delays: Close
+[0m15:43:31.153747 [debug] [Thread-2 (]: On model.afklm_delay_transform.flight_data__source_operational_flight_legs: Close
+[0m15:43:31.161811 [debug] [Thread-3 (]: On model.afklm_delay_transform.flight_data__source_operational_flights: Close
+[0m15:43:31.227275 [debug] [Thread-2 (]: Database Error in model flight_data__source_operational_flight_legs (models/1_raw/flight_data/flight_data__source_operational_flight_legs.sql)
+  column "flightid" does not exist
+  LINE 16:     flightId,
+               ^
+  HINT:  Perhaps you meant to reference the column "operational_flight_legs.flight_id".
+  compiled code at target/run/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flight_legs.sql
+[0m15:43:31.231457 [debug] [Thread-3 (]: Database Error in model flight_data__source_operational_flights (models/1_raw/flight_data/flight_data__source_operational_flights.sql)
+  column "flightnumber" does not exist
+  LINE 16:     flightNumber::int as flightNumber,
+               ^
+  HINT:  Perhaps you meant to reference the column "operational_flights.flight_number".
+  compiled code at target/run/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flights.sql
+[0m15:43:31.235437 [debug] [Thread-1 (]: Database Error in model flight_data__source_operational_flight_delays (models/1_raw/flight_data/flight_data__source_operational_flight_delays.sql)
+  column "flightlegid" does not exist
+  LINE 16:     flightLegId,
+               ^
+  HINT:  Perhaps you meant to reference the column "operational_flight_delays.flight_leg_id".
+  compiled code at target/run/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flight_delays.sql
+[0m15:43:31.235974 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '3b732eb6-67a5-49c3-9ca2-a078af7415a3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effa994aba0>]}
+[0m15:43:31.236487 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '3b732eb6-67a5-49c3-9ca2-a078af7415a3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7eff96ee3f70>]}
+[0m15:43:31.236931 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '3b732eb6-67a5-49c3-9ca2-a078af7415a3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effacd6fed0>]}
+[0m15:43:31.239450 [error] [Thread-3 (]: 3 of 13 ERROR creating sql view model silver_raw.flight_data__source_operational_flights  [[31mERROR[0m in 0.53s]
+[0m15:43:31.238591 [error] [Thread-1 (]: 1 of 13 ERROR creating sql view model silver_raw.flight_data__source_operational_flight_delays  [[31mERROR[0m in 0.52s]
+[0m15:43:31.240177 [debug] [Thread-3 (]: Finished running node model.afklm_delay_transform.flight_data__source_operational_flights
+[0m15:43:31.237730 [error] [Thread-2 (]: 2 of 13 ERROR creating sql view model silver_raw.flight_data__source_operational_flight_legs  [[31mERROR[0m in 0.51s]
+[0m15:43:31.240898 [debug] [Thread-1 (]: Finished running node model.afklm_delay_transform.flight_data__source_operational_flight_delays
+[0m15:43:31.241582 [debug] [Thread-7 (]: Marking all children of 'model.afklm_delay_transform.flight_data__source_operational_flights' to be skipped because of status 'error'.  Reason: Database Error in model flight_data__source_operational_flights (models/1_raw/flight_data/flight_data__source_operational_flights.sql)
+  column "flightnumber" does not exist
+  LINE 16:     flightNumber::int as flightNumber,
+               ^
+  HINT:  Perhaps you meant to reference the column "operational_flights.flight_number".
+  compiled code at target/run/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flights.sql.
+[0m15:43:31.242340 [debug] [Thread-2 (]: Finished running node model.afklm_delay_transform.flight_data__source_operational_flight_legs
+[0m15:43:31.243648 [debug] [Thread-7 (]: Marking all children of 'model.afklm_delay_transform.flight_data__source_operational_flight_delays' to be skipped because of status 'error'.  Reason: Database Error in model flight_data__source_operational_flight_delays (models/1_raw/flight_data/flight_data__source_operational_flight_delays.sql)
+  column "flightlegid" does not exist
+  LINE 16:     flightLegId,
+               ^
+  HINT:  Perhaps you meant to reference the column "operational_flight_delays.flight_leg_id".
+  compiled code at target/run/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flight_delays.sql.
+[0m15:43:31.244496 [debug] [Thread-7 (]: Marking all children of 'model.afklm_delay_transform.flight_data__source_operational_flight_legs' to be skipped because of status 'error'.  Reason: Database Error in model flight_data__source_operational_flight_legs (models/1_raw/flight_data/flight_data__source_operational_flight_legs.sql)
+  column "flightid" does not exist
+  LINE 16:     flightId,
+               ^
+  HINT:  Perhaps you meant to reference the column "operational_flight_legs.flight_id".
+  compiled code at target/run/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flight_legs.sql.
+[0m15:43:31.245703 [debug] [Thread-3 (]: Began running node model.afklm_delay_transform.flight_data__int_airline_delays
+[0m15:43:31.246263 [debug] [Thread-2 (]: Began running node model.afklm_delay_transform.flight_data__int_airport_delays
+[0m15:43:31.247167 [debug] [Thread-1 (]: Began running node model.afklm_delay_transform.flight_data__int_airport_congestion
+[0m15:43:31.248850 [info ] [Thread-1 (]: 6 of 13 SKIP relation silver_int.flight_data__int_airport_congestion ........... [[33mSKIP[0m]
+[0m15:43:31.249363 [debug] [Thread-1 (]: Finished running node model.afklm_delay_transform.flight_data__int_airport_congestion
+[0m15:43:31.248305 [info ] [Thread-2 (]: 7 of 13 SKIP relation silver_int.flight_data__int_airport_delays ............... [[33mSKIP[0m]
+[0m15:43:31.249922 [debug] [Thread-1 (]: Began running node model.afklm_delay_transform.flight_data__int_delays_leg
+[0m15:43:31.247634 [debug] [Thread-4 (]: Began running node model.afklm_delay_transform.flight_data__int_aircraft_delays
+[0m15:43:31.246760 [info ] [Thread-3 (]: 5 of 13 SKIP relation silver_int.flight_data__int_airline_delays ............... [[33mSKIP[0m]
+[0m15:43:31.250538 [debug] [Thread-2 (]: Finished running node model.afklm_delay_transform.flight_data__int_airport_delays
+[0m15:43:31.251103 [info ] [Thread-1 (]: 8 of 13 SKIP relation silver_int.flight_data__int_delays_leg ................... [[33mSKIP[0m]
+[0m15:43:31.252119 [debug] [Thread-3 (]: Finished running node model.afklm_delay_transform.flight_data__int_airline_delays
+[0m15:43:31.251688 [info ] [Thread-4 (]: 4 of 13 SKIP relation silver_int.flight_data__int_aircraft_delays .............. [[33mSKIP[0m]
+[0m15:43:31.252880 [debug] [Thread-1 (]: Finished running node model.afklm_delay_transform.flight_data__int_delays_leg
+[0m15:43:31.253622 [debug] [Thread-4 (]: Finished running node model.afklm_delay_transform.flight_data__int_aircraft_delays
+[0m15:43:31.254518 [debug] [Thread-2 (]: Began running node model.afklm_delay_transform.flight_data__int_legs_ready
+[0m15:43:31.255009 [info ] [Thread-2 (]: 9 of 13 SKIP relation silver_int.flight_data__int_legs_ready ................... [[33mSKIP[0m]
+[0m15:43:31.255534 [debug] [Thread-2 (]: Finished running node model.afklm_delay_transform.flight_data__int_legs_ready
+[0m15:43:31.256439 [debug] [Thread-4 (]: Began running node model.afklm_delay_transform.dim_date
+[0m15:43:31.256965 [debug] [Thread-2 (]: Began running node model.afklm_delay_transform.fct_flight_legs
+[0m15:43:31.257399 [debug] [Thread-1 (]: Began running node model.afklm_delay_transform.dim_airports
+[0m15:43:31.258262 [debug] [Thread-3 (]: Began running node model.afklm_delay_transform.dim_airlines
+[0m15:43:31.257878 [info ] [Thread-4 (]: 12 of 13 SKIP relation silver_mart.dim_date .................................... [[33mSKIP[0m]
+[0m15:43:31.261402 [debug] [Thread-4 (]: Finished running node model.afklm_delay_transform.dim_date
+[0m15:43:31.259345 [info ] [Thread-1 (]: 11 of 13 SKIP relation silver_mart.dim_airports ................................ [[33mSKIP[0m]
+[0m15:43:31.262204 [debug] [Thread-1 (]: Finished running node model.afklm_delay_transform.dim_airports
+[0m15:43:31.258756 [info ] [Thread-2 (]: 13 of 13 SKIP relation silver_mart.fct_flight_legs ............................. [[33mSKIP[0m]
+[0m15:43:31.263166 [debug] [Thread-2 (]: Finished running node model.afklm_delay_transform.fct_flight_legs
+[0m15:43:31.260027 [info ] [Thread-3 (]: 10 of 13 SKIP relation silver_mart.dim_airlines ................................ [[33mSKIP[0m]
+[0m15:43:31.264003 [debug] [Thread-3 (]: Finished running node model.afklm_delay_transform.dim_airlines
+[0m15:43:31.265567 [debug] [MainThread]: On master: COMMIT
+[0m15:43:31.266032 [debug] [MainThread]: Using postgres connection "master"
+[0m15:43:31.266426 [debug] [MainThread]: On master: COMMIT
+[0m15:43:31.266809 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m15:43:31.576340 [debug] [MainThread]: SQL status: COMMIT in 0.309 seconds
+[0m15:43:31.576876 [debug] [MainThread]: On master: Close
+[0m15:43:31.577592 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:43:31.577950 [debug] [MainThread]: Connection 'model.afklm_delay_transform.flight_data__source_operational_flight_delays' was properly closed.
+[0m15:43:31.578295 [debug] [MainThread]: Connection 'model.afklm_delay_transform.flight_data__source_operational_flights' was properly closed.
+[0m15:43:31.578618 [debug] [MainThread]: Connection 'model.afklm_delay_transform.flight_data__source_operational_flight_legs' was properly closed.
+[0m15:43:31.579123 [info ] [MainThread]: 
+[0m15:43:31.579531 [info ] [MainThread]: Finished running 4 table models, 9 view models in 0 hours 0 minutes and 2.57 seconds (2.57s).
+[0m15:43:31.585218 [debug] [MainThread]: Command end result
+[0m15:43:31.634038 [debug] [MainThread]: Wrote artifact WritableManifest to /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/target/manifest.json
+[0m15:43:31.636266 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/target/semantic_manifest.json
+[0m15:43:31.642688 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/target/run_results.json
+[0m15:43:31.643097 [info ] [MainThread]: 
+[0m15:43:31.643679 [info ] [MainThread]: [31mCompleted with 3 errors, 0 partial successes, and 0 warnings:[0m
+[0m15:43:31.644241 [info ] [MainThread]: 
+[0m15:43:31.645053 [error] [MainThread]: [31mFailure in model flight_data__source_operational_flights (models/1_raw/flight_data/flight_data__source_operational_flights.sql)[0m
+[0m15:43:31.645557 [error] [MainThread]:   Database Error in model flight_data__source_operational_flights (models/1_raw/flight_data/flight_data__source_operational_flights.sql)
+  column "flightnumber" does not exist
+  LINE 16:     flightNumber::int as flightNumber,
+               ^
+  HINT:  Perhaps you meant to reference the column "operational_flights.flight_number".
+  compiled code at target/run/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flights.sql
+[0m15:43:31.645969 [info ] [MainThread]: 
+[0m15:43:31.646431 [info ] [MainThread]:   compiled code at target/compiled/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flights.sql
+[0m15:43:31.646835 [info ] [MainThread]: 
+[0m15:43:31.647292 [error] [MainThread]: [31mFailure in model flight_data__source_operational_flight_delays (models/1_raw/flight_data/flight_data__source_operational_flight_delays.sql)[0m
+[0m15:43:31.647719 [error] [MainThread]:   Database Error in model flight_data__source_operational_flight_delays (models/1_raw/flight_data/flight_data__source_operational_flight_delays.sql)
+  column "flightlegid" does not exist
+  LINE 16:     flightLegId,
+               ^
+  HINT:  Perhaps you meant to reference the column "operational_flight_delays.flight_leg_id".
+  compiled code at target/run/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flight_delays.sql
+[0m15:43:31.648095 [info ] [MainThread]: 
+[0m15:43:31.648535 [info ] [MainThread]:   compiled code at target/compiled/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flight_delays.sql
+[0m15:43:31.649237 [info ] [MainThread]: 
+[0m15:43:31.649750 [error] [MainThread]: [31mFailure in model flight_data__source_operational_flight_legs (models/1_raw/flight_data/flight_data__source_operational_flight_legs.sql)[0m
+[0m15:43:31.650218 [error] [MainThread]:   Database Error in model flight_data__source_operational_flight_legs (models/1_raw/flight_data/flight_data__source_operational_flight_legs.sql)
+  column "flightid" does not exist
+  LINE 16:     flightId,
+               ^
+  HINT:  Perhaps you meant to reference the column "operational_flight_legs.flight_id".
+  compiled code at target/run/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flight_legs.sql
+[0m15:43:31.650735 [info ] [MainThread]: 
+[0m15:43:31.651219 [info ] [MainThread]:   compiled code at target/compiled/afklm_delay_transform/models/1_raw/flight_data/flight_data__source_operational_flight_legs.sql
+[0m15:43:31.651646 [info ] [MainThread]: 
+[0m15:43:31.652068 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=3 SKIP=10 NO-OP=0 TOTAL=13
+[0m15:43:31.653076 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 4.7599406, "process_in_blocks": "3800", "process_kernel_time": 0.233461, "process_mem_max_rss": "140824", "process_out_blocks": "3408", "process_user_time": 3.521704}
+[0m15:43:31.653591 [debug] [MainThread]: Command `dbt run` failed at 15:43:31.653482 after 4.76 seconds
+[0m15:43:31.654027 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effabfb22e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effb09adda0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7effac812b10>]}
+[0m15:43:31.654545 [debug] [MainThread]: Flushing usage events
+[0m15:43:32.076332 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:22:10.858486 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f230fa670e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f230e96bd90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f230e96bb10>]}
+
+
+============================== 22:22:10.906931 | a4df60a8-dfac-4cd7-9094-c5e2fc421dd9 ==============================
+[0m22:22:10.906931 [info ] [MainThread]: Running with dbt=1.11.8
+[0m22:22:10.907928 [debug] [MainThread]: running dbt with arguments {'log_path': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/logs', 'use_experimental_parser': 'False', 'target_path': 'None', 'static_parser': 'True', 'fail_fast': 'False', 'invocation_command': 'dbt run', 'printer_width': '80', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'debug': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True', 'send_anonymous_usage_stats': 'True', 'empty': 'False', 'version_check': 'True', 'write_json': 'True', 'partial_parse': 'True', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'introspect': 'True', 'profiles_dir': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation', 'cache_selected_only': 'False', 'warn_error': 'None'}
+[0m22:22:10.929578 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Env var required but not provided: 'DB_HOST'
+[0m22:22:10.930969 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.18942392, "process_in_blocks": "41088", "process_kernel_time": 0.197605, "process_mem_max_rss": "105980", "process_out_blocks": "8", "process_user_time": 1.580841}
+[0m22:22:10.931710 [debug] [MainThread]: Command `dbt run` failed at 22:22:10.931569 after 0.19 seconds
+[0m22:22:10.932204 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f230e9e8d60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f230e9a9d90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f230e985f20>]}
+[0m22:22:10.932752 [debug] [MainThread]: Flushing usage events
+[0m22:22:11.393264 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:23:16.489696 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f79aa26f0e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f79a9173d90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f79a9173b10>]}
+
+
+============================== 22:23:16.492884 | b67cb5bc-6e77-4dfe-861b-a61c415f83b4 ==============================
+[0m22:23:16.492884 [info ] [MainThread]: Running with dbt=1.11.8
+[0m22:23:16.493723 [debug] [MainThread]: running dbt with arguments {'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'warn_error': 'None', 'send_anonymous_usage_stats': 'True', 'cache_selected_only': 'False', 'empty': 'False', 'quiet': 'False', 'printer_width': '80', 'version_check': 'True', 'static_parser': 'True', 'log_format': 'default', 'log_path': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/logs', 'fail_fast': 'False', 'no_print': 'None', 'use_colors': 'True', 'indirect_selection': 'eager', 'invocation_command': 'dbt run', 'target_path': 'None', 'log_cache_events': 'False', 'debug': 'False', 'use_experimental_parser': 'False', 'profiles_dir': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation', 'introspect': 'True', 'write_json': 'True'}
+[0m22:23:16.498637 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Env var required but not provided: 'DB_USER'
+[0m22:23:16.499919 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.08129694, "process_in_blocks": "0", "process_kernel_time": 0.115495, "process_mem_max_rss": "106092", "process_out_blocks": "16", "process_user_time": 1.417809}
+[0m22:23:16.500507 [debug] [MainThread]: Command `dbt run` failed at 22:23:16.500395 after 0.08 seconds
+[0m22:23:16.500926 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f79a91f0fc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f79a91b1eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f79a918df20>]}
+[0m22:23:16.501355 [debug] [MainThread]: Flushing usage events
+[0m22:23:16.954220 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:23:43.856034 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f397c46f0e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f397b36fd90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f397b36fb10>]}
+
+
+============================== 22:23:43.859157 | 4be2e26d-2126-43b6-bc09-73fe86253747 ==============================
+[0m22:23:43.859157 [info ] [MainThread]: Running with dbt=1.11.8
+[0m22:23:43.860014 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'log_format': 'default', 'warn_error': 'None', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'introspect': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'indirect_selection': 'eager', 'printer_width': '80', 'static_parser': 'True', 'version_check': 'True', 'partial_parse': 'True', 'debug': 'False', 'invocation_command': 'dbt run', 'log_cache_events': 'False', 'use_colors': 'True', 'target_path': 'None', 'no_print': 'None', 'profiles_dir': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation', 'write_json': 'True', 'log_path': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m22:23:43.865716 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Env var required but not provided: 'DB_NAME'
+[0m22:23:43.867080 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.08241631, "process_in_blocks": "0", "process_kernel_time": 0.12004, "process_mem_max_rss": "106264", "process_out_blocks": "0", "process_user_time": 1.40848}
+[0m22:23:43.867662 [debug] [MainThread]: Command `dbt run` failed at 22:23:43.867551 after 0.08 seconds
+[0m22:23:43.868102 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f397b3ed480>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f397b3b28d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f397b38ebe0>]}
+[0m22:23:43.868574 [debug] [MainThread]: Flushing usage events
+[0m22:23:44.284330 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:24:07.309262 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f619b1930e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f619a09bd90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f619a09bb10>]}
+
+
+============================== 22:24:07.312444 | d9841902-c1f0-4da8-8022-dce1aad7a3a7 ==============================
+[0m22:24:07.312444 [info ] [MainThread]: Running with dbt=1.11.8
+[0m22:24:07.313245 [debug] [MainThread]: running dbt with arguments {'use_colors': 'True', 'write_json': 'True', 'debug': 'False', 'quiet': 'False', 'empty': 'False', 'introspect': 'True', 'warn_error': 'None', 'partial_parse': 'True', 'no_print': 'None', 'version_check': 'True', 'invocation_command': 'dbt run', 'printer_width': '80', 'profiles_dir': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation', 'log_path': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/logs', 'send_anonymous_usage_stats': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'target_path': 'None', 'fail_fast': 'False', 'log_cache_events': 'False', 'log_format': 'default', 'static_parser': 'True'}
+[0m22:24:07.880822 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'd9841902-c1f0-4da8-8022-dce1aad7a3a7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f619aef23f0>]}
+[0m22:24:07.966524 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'd9841902-c1f0-4da8-8022-dce1aad7a3a7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f619b5dfdf0>]}
+[0m22:24:07.969272 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m22:24:08.138610 [debug] [MainThread]: checksum: 7d524ac048c2100769df89d592e662e060a73ca564e31bd9c2a37efdfe8d8ab6, vars: {}, profile: , target: , version: 1.11.8
+[0m22:24:08.372674 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 11 files changed.
+[0m22:24:08.373315 [debug] [MainThread]: Partial parsing: updated file: afklm_delay_transform://models/3_mart/delays/dim_airports.sql
+[0m22:24:08.373780 [debug] [MainThread]: Partial parsing: updated file: afklm_delay_transform://models/1_raw/flight_data/flight_data__source_operational_flight_legs.sql
+[0m22:24:08.374232 [debug] [MainThread]: Partial parsing: updated file: afklm_delay_transform://models/2_int/flight_data/flight_data__int_aircraft_delays.sql
+[0m22:24:08.374680 [debug] [MainThread]: Partial parsing: updated file: afklm_delay_transform://models/1_raw/flight_data/flight_data__source_operational_flights.sql
+[0m22:24:08.375134 [debug] [MainThread]: Partial parsing: updated file: afklm_delay_transform://models/3_mart/delays/dim_date.sql
+[0m22:24:08.375630 [debug] [MainThread]: Partial parsing: updated file: afklm_delay_transform://models/1_raw/flight_data/flight_data__source_operational_flight_delays.sql
+[0m22:24:08.376087 [debug] [MainThread]: Partial parsing: updated file: afklm_delay_transform://models/2_int/flight_data/flight_data__int_legs_ready.sql
+[0m22:24:08.376539 [debug] [MainThread]: Partial parsing: updated file: afklm_delay_transform://models/2_int/flight_data/flight_data__int_delays_leg.sql
+[0m22:24:08.376989 [debug] [MainThread]: Partial parsing: updated file: afklm_delay_transform://models/2_int/flight_data/flight_data__int_airport_delays.sql
+[0m22:24:08.377434 [debug] [MainThread]: Partial parsing: updated file: afklm_delay_transform://models/2_int/flight_data/flight_data__int_airline_delays.sql
+[0m22:24:08.377874 [debug] [MainThread]: Partial parsing: updated file: afklm_delay_transform://models/3_mart/delays/fct_flight_legs.sql
+[0m22:24:08.792510 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'd9841902-c1f0-4da8-8022-dce1aad7a3a7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f61991d2750>]}
+[0m22:24:08.868841 [debug] [MainThread]: Wrote artifact WritableManifest to /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/target/manifest.json
+[0m22:24:08.887926 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/target/semantic_manifest.json
+[0m22:24:08.990718 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'd9841902-c1f0-4da8-8022-dce1aad7a3a7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f6199f48c80>]}
+[0m22:24:08.991326 [info ] [MainThread]: Found 13 models, 3 sources, 466 macros
+[0m22:24:08.991863 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'd9841902-c1f0-4da8-8022-dce1aad7a3a7', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f619952a970>]}
+[0m22:24:08.994062 [info ] [MainThread]: 
+[0m22:24:08.994588 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m22:24:08.995099 [info ] [MainThread]: 
+[0m22:24:08.995839 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m22:24:09.001048 [debug] [ThreadPool]: Acquiring new postgres connection 'list_postgres'
+[0m22:24:09.007885 [debug] [ThreadPool]: Acquiring new postgres connection 'list_postgres'
+[0m22:24:09.023106 [debug] [ThreadPool]: Acquiring new postgres connection 'list_postgres'
+[0m22:24:09.183850 [debug] [ThreadPool]: Using postgres connection "list_postgres"
+[0m22:24:09.184361 [debug] [ThreadPool]: Using postgres connection "list_postgres"
+[0m22:24:09.184791 [debug] [ThreadPool]: On list_postgres: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:09.185182 [debug] [ThreadPool]: Using postgres connection "list_postgres"
+[0m22:24:09.185653 [debug] [ThreadPool]: On list_postgres: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:09.186326 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:24:09.186814 [debug] [ThreadPool]: On list_postgres: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:09.187251 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:24:09.188034 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:24:09.803007 [debug] [ThreadPool]: Postgres adapter: Got a retryable error when attempting to open a postgres connection.
+1 attempts remaining. Retrying in 0 seconds.
+Error:
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  password authentication failed for user "postgres"
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  password authentication failed for user "postgres"
+
+[0m22:24:09.811792 [debug] [ThreadPool]: Postgres adapter: Got a retryable error when attempting to open a postgres connection.
+1 attempts remaining. Retrying in 0 seconds.
+Error:
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  password authentication failed for user "postgres"
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  password authentication failed for user "postgres"
+
+[0m22:24:09.834745 [debug] [ThreadPool]: Postgres adapter: Got a retryable error when attempting to open a postgres connection.
+1 attempts remaining. Retrying in 0 seconds.
+Error:
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  password authentication failed for user "postgres"
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  password authentication failed for user "postgres"
+
+[0m22:24:10.194056 [debug] [ThreadPool]: Postgres adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:10.194528 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:10.195038 [debug] [ThreadPool]: Postgres adapter: Error running SQL: macro list_schemas
+[0m22:24:10.195434 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:10.195867 [debug] [ThreadPool]: On list_postgres: No close available on handle
+[0m22:24:10.208882 [debug] [ThreadPool]: Postgres adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:10.209350 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:10.209844 [debug] [ThreadPool]: Postgres adapter: Error running SQL: macro list_schemas
+[0m22:24:10.210239 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:10.210609 [debug] [ThreadPool]: On list_postgres: No close available on handle
+[0m22:24:10.220001 [debug] [ThreadPool]: Postgres adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:10.220457 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:10.220933 [debug] [ThreadPool]: Postgres adapter: Error running SQL: macro list_schemas
+[0m22:24:10.221348 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:10.221718 [debug] [ThreadPool]: On list_postgres: No close available on handle
+[0m22:24:10.222437 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:24:10.222753 [debug] [MainThread]: Connection 'list_postgres' was properly closed.
+[0m22:24:10.223092 [debug] [MainThread]: Connection 'list_postgres' was properly closed.
+[0m22:24:10.223469 [debug] [MainThread]: Connection 'list_postgres' was properly closed.
+[0m22:24:10.223859 [info ] [MainThread]: 
+[0m22:24:10.224337 [info ] [MainThread]: Finished running  in 0 hours 0 minutes and 1.23 seconds (1.23s).
+[0m22:24:10.225130 [error] [MainThread]: Encountered an error:
+Database Error
+  connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  password authentication failed for user "postgres"
+  connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  password authentication failed for user "postgres"
+  
+[0m22:24:10.226171 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 2.9878647, "process_in_blocks": "25400", "process_kernel_time": 0.177317, "process_mem_max_rss": "132972", "process_out_blocks": "2216", "process_user_time": 2.502597}
+[0m22:24:10.226708 [debug] [MainThread]: Command `dbt run` failed at 22:24:10.226606 after 2.99 seconds
+[0m22:24:10.227120 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f61985ce820>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f619a2abc50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f6198da7a10>]}
+[0m22:24:10.227552 [debug] [MainThread]: Flushing usage events
+[0m22:24:10.697611 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:24:36.916011 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe18b08f0e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe189f8fd90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe189f8fb10>]}
+
+
+============================== 22:24:36.919080 | c0368f24-ad7a-4266-a83d-92085112ec17 ==============================
+[0m22:24:36.919080 [info ] [MainThread]: Running with dbt=1.11.8
+[0m22:24:36.919874 [debug] [MainThread]: running dbt with arguments {'profiles_dir': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation', 'version_check': 'True', 'empty': 'False', 'send_anonymous_usage_stats': 'True', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'write_json': 'True', 'no_print': 'None', 'log_path': '/home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/logs', 'use_experimental_parser': 'False', 'partial_parse': 'True', 'fail_fast': 'False', 'printer_width': '80', 'target_path': 'None', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False', 'introspect': 'True', 'warn_error': 'None', 'use_colors': 'True', 'indirect_selection': 'eager', 'quiet': 'False', 'invocation_command': 'dbt run'}
+[0m22:24:37.115288 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'c0368f24-ad7a-4266-a83d-92085112ec17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe18adee3f0>]}
+[0m22:24:37.199897 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'c0368f24-ad7a-4266-a83d-92085112ec17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe18b9cbdf0>]}
+[0m22:24:37.200653 [info ] [MainThread]: Registered adapter: postgres=1.10.0
+[0m22:24:37.273834 [debug] [MainThread]: checksum: 7d524ac048c2100769df89d592e662e060a73ca564e31bd9c2a37efdfe8d8ab6, vars: {}, profile: , target: , version: 1.11.8
+[0m22:24:37.365014 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m22:24:37.365401 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m22:24:37.365749 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m22:24:37.397360 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'c0368f24-ad7a-4266-a83d-92085112ec17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe188dcc750>]}
+[0m22:24:37.530579 [debug] [MainThread]: Wrote artifact WritableManifest to /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/target/manifest.json
+[0m22:24:37.532326 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/pierre/Documents/DE_DATASCIENTEST/dst_airlines/2_transformation/target/semantic_manifest.json
+[0m22:24:37.540087 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'c0368f24-ad7a-4266-a83d-92085112ec17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe189e90b90>]}
+[0m22:24:37.540580 [info ] [MainThread]: Found 13 models, 3 sources, 466 macros
+[0m22:24:37.541043 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'c0368f24-ad7a-4266-a83d-92085112ec17', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe1885d3770>]}
+[0m22:24:37.543234 [info ] [MainThread]: 
+[0m22:24:37.543802 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m22:24:37.544241 [info ] [MainThread]: 
+[0m22:24:37.544972 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m22:24:37.550271 [debug] [ThreadPool]: Acquiring new postgres connection 'list_postgres'
+[0m22:24:37.558226 [debug] [ThreadPool]: Acquiring new postgres connection 'list_postgres'
+[0m22:24:37.569500 [debug] [ThreadPool]: Acquiring new postgres connection 'list_postgres'
+[0m22:24:37.597201 [debug] [ThreadPool]: Using postgres connection "list_postgres"
+[0m22:24:37.597916 [debug] [ThreadPool]: Using postgres connection "list_postgres"
+[0m22:24:37.598354 [debug] [ThreadPool]: On list_postgres: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:37.598737 [debug] [ThreadPool]: Using postgres connection "list_postgres"
+[0m22:24:37.599195 [debug] [ThreadPool]: On list_postgres: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:37.599786 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:24:37.600273 [debug] [ThreadPool]: On list_postgres: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:37.600840 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:24:37.601576 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:24:37.924550 [debug] [ThreadPool]: Postgres adapter: Got a retryable error when attempting to open a postgres connection.
+1 attempts remaining. Retrying in 0 seconds.
+Error:
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  (ECIRCUITBREAKER) too many authentication failures, new connections are temporarily blocked
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  (ECIRCUITBREAKER) too many authentication failures, new connections are temporarily blocked
+
+[0m22:24:37.925159 [debug] [ThreadPool]: Postgres adapter: Got a retryable error when attempting to open a postgres connection.
+1 attempts remaining. Retrying in 0 seconds.
+Error:
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  (ECIRCUITBREAKER) too many authentication failures, new connections are temporarily blocked
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  (ECIRCUITBREAKER) too many authentication failures, new connections are temporarily blocked
+
+[0m22:24:37.926022 [debug] [ThreadPool]: Postgres adapter: Got a retryable error when attempting to open a postgres connection.
+1 attempts remaining. Retrying in 0 seconds.
+Error:
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  (ECIRCUITBREAKER) too many authentication failures, new connections are temporarily blocked
+connection to server at "aws-1-eu-west-1.pooler.supabase.com" (18.202.64.2), port 6543 failed: FATAL:  (ECIRCUITBREAKER) too many authentication failures, new connections are temporarily blocked
+
+[0m22:24:38.263274 [debug] [ThreadPool]: Postgres adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:38.263991 [debug] [ThreadPool]: Postgres adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:38.264426 [debug] [ThreadPool]: Postgres adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.11.8", "profile_name": "afklm_delay_pipeline", "target_name": "dev", "connection_name": "list_postgres"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:24:38.264827 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:38.265262 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:38.265742 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:38.266258 [debug] [ThreadPool]: Postgres adapter: Error running SQL: macro list_schemas
+[0m22:24:38.266751 [debug] [ThreadPool]: Postgres adapter: Error running SQL: macro list_schemas
+[0m22:24:38.267272 [debug] [ThreadPool]: Postgres adapter: Error running SQL: macro list_schemas
+[0m22:24:38.267784 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:38.268299 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:38.268759 [debug] [ThreadPool]: Postgres adapter: Rolling back transaction.
+[0m22:24:38.269206 [debug] [ThreadPool]: On list_postgres: No close available on handle
+[0m22:24:38.269670 [debug] [ThreadPool]: On list_postgres: No close available on handle
+[0m22:24:38.270138 [debug] [ThreadPool]: On list_postgres: No close available on handle
+[0m22:24:38.271640 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:24:38.271985 [debug] [MainThread]: Connection 'list_postgres' was properly closed.
+[0m22:24:38.272313 [debug] [MainThread]: Connection 'list_postgres' was properly closed.
+[0m22:24:38.272632 [debug] [MainThread]: Connection 'list_postgres' was properly closed.
+[0m22:24:38.272992 [info ] [MainThread]: 
+[0m22:24:38.273491 [info ] [MainThread]: Finished running  in 0 hours 0 minutes and 0.73 seconds (0.73s).
+[0m22:24:38.274264 [error] [MainThread]: Encountered an error:
+Database Error
+  connection to server at "aws-1-eu-west-1.pooler.supabase.com" (54.247.26.119), port 6543 failed: FATAL:  (ECIRCUITBREAKER) too many authentication failures, new connections are temporarily blocked
+  connection to server at "aws-1-eu-west-1.pooler.supabase.com" (54.247.26.119), port 6543 failed: FATAL:  (ECIRCUITBREAKER) too many authentication failures, new connections are temporarily blocked
+  
+[0m22:24:38.275256 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 1.4303541, "process_in_blocks": "0", "process_kernel_time": 0.19008, "process_mem_max_rss": "130880", "process_out_blocks": "1192", "process_user_time": 2.059207}
+[0m22:24:38.275849 [debug] [MainThread]: Command `dbt run` failed at 22:24:38.275747 after 1.43 seconds
+[0m22:24:38.276284 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe188910870>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe18a1a7c50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe18a01de50>]}
+[0m22:24:38.276722 [debug] [MainThread]: Flushing usage events
+[0m22:24:38.716428 [debug] [MainThread]: An error was encountered while trying to flush usage events
