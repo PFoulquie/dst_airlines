@@ -25,18 +25,17 @@ DB_SSLMODE = os.getenv("AFKLM_DB_SSLMODE", "prefer")
 
 DB_URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?sslmode={DB_SSLMODE}" # update connection 
 FEATURES = [ # update 
-    "scheduledFlightDuration",
-    "nbFlightDepartingDepartureAirport",
-    "nbFlightArrivingDepartureAirport",
-    "nbFlightDepartingArrivalAirport",
-    "nbFlightArrivingArrivalAirport",
-    "departureairportdelayedshare",
-    "aircraftdelayedshare",
-    "airlinedelayedshare",
-    "departureMonthDay",
-    "departureWeekDay",
-    "departureHour",
-    "delayDuration"
+    "scheduled_flight_duration",
+    "nb_flight_departing_departure_airport",
+    "nb_flight_arriving_departure_airport",
+    "nb_flight_departing_arrival_airport",
+    "nb_flight_arriving_arrival_airport",
+    "departure_airport_delayed_share",
+    "aircraft_delayed_share",
+    "airline_delayed_share",
+    "departure_monthday",
+    "departure_weekday",
+    "departure_hour"
 ]
 TARGET = "is_delayed"
 
