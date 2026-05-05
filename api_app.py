@@ -21,7 +21,7 @@ engine = create_engine(DATABASE_URL)
 
 @app.get("/")
 def read_root():
-    return {"message": "✅ L'API est en ligne !"}
+    return {"message": " L'API est en ligne !"}
 
 @app.get("/flight-stats")
 def get_flight_stats(
@@ -67,6 +67,34 @@ def get_flight_stats(
         }
     except Exception as e:
         # En cas d'erreur, on affiche TOUT dans le terminal Docker
-        print("🔴 ERREUR CRITIQUE DANS L'API :")
+        print("ERREUR CRITIQUE DANS L'API :")
         print(traceback.format_exc())
         raise HTTPException(status_code=500, detail=str(e))
+    
+
+
+@app.get("/monitoring-stats")
+def get_monitoring_stats():
+    try:
+        with engine.connect() as conn:
+            # Requête pour calculer les métriques d'observabilité
+            query = text("""
+                SELECT 
+                    COUNT(DISTINCT execution_date) as days,
+                    SUM(records_processed) as total_rows,
+                    ROUND(CAST(SUM(records_error) AS NUMERIC) / NULLIF(SUM(records_processed) + SUM(records_error), 0) * 100, 2) as error_rate,
+                    (SELECT status FROM logs.job_runs ORDER BY started_at DESC LIMIT 1) as last_status
+                FROM logs.job_runs
+                WHERE layer = 'BRONZE'
+            """)
+            res = conn.execute(query).mappings().first()
+            
+            return {
+                "days": res["days"] or 0,
+                "total_rows": res["total_rows"] or 0,
+                "error_rate": float(res["error_rate"]) if res["error_rate"] else 0.0,
+                "last_status": res["last_status"] or "N/A"
+            }
+    except Exception as e:
+        print(f"ERREUR MONITORING : {e}")
+        return {"days": 0, "total_rows": 0, "error_rate": 0, "last_status": "ERROR"}

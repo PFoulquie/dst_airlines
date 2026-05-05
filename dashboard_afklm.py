@@ -26,6 +26,18 @@ AIRLINE_MAPPING = {
 # Mapping inversé pour retrouver le code IATA à partir du nom (pour l'API)
 REVERSE_MAPPING = {v: k for k, v in AIRLINE_MAPPING.items()}
 
+# --- FONCTION DE RÉCUPÉRATION DES LOGS (DATA OPS) ---
+@st.cache_data(ttl=60)
+def fetch_monitoring_stats():
+    """Récupère les métriques de la table logs.job_runs via FastAPI"""
+    try:
+        response = requests.get("http://fastapi:8000/monitoring-stats", timeout=5)
+        if response.status_code == 200:
+            return response.json()
+    except:
+        pass
+    return {"days": 0, "total_rows": 0, "error_rate": 0, "last_status": "API Down"}
+
 # --- HEADER ET METADONNÉES ---
 head_col1, head_col2 = st.columns([2.8, 1.2])
 
@@ -69,6 +81,32 @@ with head_col2:
 
 st.divider()
 
+# --- NOUVELLE SECTION : MONITORING DATA OPS ---
+st.markdown(
+    """
+    <h3 style='display: flex; align-items: center;'>
+        <img src='https://img.icons8.com/color/48/000000/settings.png' width='30' style='margin-right: 10px;'>
+        Data Pipeline Health (Observabilité Logs)
+    </h3>
+    """, unsafe_allow_html=True
+)
+
+stats_ops = fetch_monitoring_stats()
+m1, m2, m3, m4 = st.columns(4)
+
+with m1:
+    st.metric("Jours d'ingestion", f"{stats_ops['days']} j", help="Historique disponible en base")
+with m2:
+    st.metric("Lignes Bronze", f"{stats_ops['total_rows']:,}", help="Volume total extrait de l'API")
+with m3:
+    # On inverse la couleur car un taux d'erreur élevé est "mauvais"
+    st.metric("Taux d'échec API", f"{stats_ops['error_rate']}%", delta=f"{stats_ops['error_rate']}%", delta_color="inverse")
+with m4:
+    status_icon = "🟢" if "SUCCESS" in stats_ops['last_status'] else "🔴"
+    st.metric("Statut Pipeline", f"{status_icon} {stats_ops['last_status']}")
+
+st.divider()
+
 # --- ZONE DE FILTRES ---
 st.markdown(
     """
@@ -103,7 +141,7 @@ if st.button("Actualiser les données avec ces filtres", type="primary", use_con
     st.session_state['api_date'] = selected_date.strftime("%Y-%m-%d")
     st.session_state['api_airline'] = REVERSE_MAPPING.get(selected_airline_name, "ALL")
 
-# --- RÉCUPÉRATION DES DONNÉES ---
+# --- RÉCUPÉRATION DES DONNÉES MÉTIER ---
 @st.cache_data(ttl=60)
 def fetch_data(query_date, query_airline):
     try:
