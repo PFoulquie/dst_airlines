@@ -1,6 +1,6 @@
 """
 Script ML pour la prédiction des retards AF/KLM.
-Lit mart.fct_flight_legs, prépare les observations et applique le modèle,
+Lit silver_mart.fct_flight_legs, prépare les observations et applique le modèle,
 écrit les prédictions dans ml_delays.
 """
 
@@ -15,7 +15,7 @@ from sqlalchemy import create_engine, text
 import urllib.request
 import pickle
 
-# Config DB depuis variables d'environnement #update connection to supabase 
+# Config DB depuis variables d'environnement 
 DB_HOST = os.getenv("AFKLM_DB_HOST", "localhost")
 DB_PORT = os.getenv("AFKLM_DB_PORT", "5432")
 DB_USER = os.getenv("AFKLM_DB_USER", "postgres")
@@ -23,38 +23,54 @@ DB_PASSWORD = os.getenv("AFKLM_DB_PASSWORD", "")
 DB_NAME = os.getenv("AFKLM_DB_NAME", "postgres")
 DB_SSLMODE = os.getenv("AFKLM_DB_SSLMODE", "prefer")
 
-DB_URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?sslmode={DB_SSLMODE}" # update connection 
-FEATURES = [ # update 
-    "scheduled_flight_duration",
-    "nb_flight_departing_departure_airport",
-    "nb_flight_arriving_departure_airport",
-    "nb_flight_departing_arrival_airport",
-    "nb_flight_arriving_arrival_airport",
-    "departure_airport_delayed_share",
-    "aircraft_delayed_share",
-    "airline_delayed_share",
-    "departure_monthday",
-    "departure_weekday",
-    "departure_hour"
+DB_URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?sslmode={DB_SSLMODE}"  
+
+FEATURES = [  
+    "scheduledFlightDuration",
+    "nbFlightDepartingDepartureAirport",
+    "nbFlightArrivingDepartureAirport",
+    "nbFlightDepartingArrivalAirport",
+    "nbFlightArrivingArrivalAirport",
+    "departureairportdelayedshare",
+    "aircraftdelayedshare",
+    "airlinedelayedshare",
+    "departureMonthDay",
+    "departureWeekDay",
+    "departureHour"
 ]
 TARGET = "is_delayed"
 
 
 def load_data(engine) -> pd.DataFrame:
-    """Charge mart.fct_flight_legs (vols non annulés)."""
+    """Charge silver_mart.fct_flight_legs (vols non annulés)."""
     query = """
-    SELECT * FROM mart.fct_flight_legs
+    SELECT * FROM silver_mart.fct_flight_legs
     WHERE cancelled = false
     """
     return pd.read_sql(query, engine)
 
 
-def prepare_for_predicton(df: pd.DataFrame): #update content: fillna and scale 
+def prepare_for_predicton(df: pd.DataFrame): 
     """Prépare X, y"""
-    df = df.copy()
     df[TARGET] = df[TARGET].astype(bool).astype(int)
     means_df = pickle.load(urllib.request.urlopen("https://amtxaysrmhlznfwqemdu.supabase.co/storage/v1/object/sign/ml_models/means_2026-04-01_11_33_01.pkl?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80OThhOTAyZC0zYTJmLTRjM2EtOTFlOC05NGE0YTE2MTc0ZTgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbF9tb2RlbHMvbWVhbnNfMjAyNi0wNC0wMV8xMV8zM18wMS5wa2wiLCJpYXQiOjE3Nzc4NzYzNTYsImV4cCI6MTgwOTQxMjM1Nn0.B-8vk1ot07LMpXv_1dkGoHSKZmpYFsYfuxzRBht_WFc"))
     scaler = pickle.load(urllib.request.urlopen("https://amtxaysrmhlznfwqemdu.supabase.co/storage/v1/object/sign/ml_models/scaler_2026-04-01_11_33_06.pkl?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80OThhOTAyZC0zYTJmLTRjM2EtOTFlOC05NGE0YTE2MTc0ZTgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtbF9tb2RlbHMvc2NhbGVyXzIwMjYtMDQtMDFfMTFfMzNfMDYucGtsIiwiaWF0IjoxNzc3ODc2NDE5LCJleHAiOjE4MDk0MTI0MTl9.3fW6ZOSCZuAzxc-yUGKZ3iFkpVsVXB_5GBSyWapzhEY"))
+
+    # rename for ml 
+    df = df.rename(columns = {
+            "scheduled_flight_duration_minutes":"scheduledFlightDuration",
+            "departure_weekday":"departureWeekDay",
+            "departure_hour":"departureHour",
+            "departure_monthday":"departureMonthDay",
+            "nb_flight_departing_departure_airport":"nbFlightDepartingDepartureAirport",
+            "nb_flight_arriving_departure_airport":"nbFlightArrivingDepartureAirport",
+            "nb_flight_departing_arrival_airport":"nbFlightDepartingArrivalAirport",
+            "nb_flight_arriving_arrival_airport":"nbFlightArrivingArrivalAirport",
+            "departure_airport_delayed_share":"departureairportdelayedshare",
+            "aircraft_delayed_share":"aircraftdelayedshare",
+            "airline_delayed_share":"airlinedelayedshare"}
+            )
+    
 
     # replace with mean value 
     for col in FEATURES:
@@ -69,20 +85,7 @@ def prepare_for_predicton(df: pd.DataFrame): #update content: fillna and scale
 
     y = df[TARGET].values
 
-    # rename for ml 
-    X_norm = X_norm.rename(columns = {
-            "scheduled_flight_duration":"scheduledFlightDuration",
-            "departure_weekday":"departureWeekDay",
-            "departure_hour":"departureHour",
-            "departure_monthday":"departureMonthDay",
-            "nb_flight_departing_departure_airport":"nbFlightDepartingDepartureAirport",
-            "nb_flight_arriving_departure_airport":"nbFlightArrivingDepartureAirport",
-            "nb_flight_departing_arrival_airport":"nbFlightDepartingArrivalAirport",
-            "nb_flight_arriving_arrival_airport":"nbFlightArrivingArrivalAirport",
-            "departure_airport_delayed_share":"departureAirportDelayedShare",
-            "aircraft_delayed_share":"aircraftDelayedShare",
-            "airline_delayed_share":"airlineDelayedShare"}
-            )
+
     
 
     return X_norm, y
@@ -103,14 +106,14 @@ def main():
     y_pred = model_.predict(X)
 
     df_w_pred = df.copy()
-    df_w_pred["delayPredicted"] = y_pred
+    df_w_pred["delay_predicted"] = y_pred
 
     create_sql = """
     CREATE TABLE IF NOT EXISTS public.ml_delays (
         leg_id UUID,
         flight_id VARCHAR(50),
         delay_predicted INTEGER,
-        PRIMARY KEY (legId)
+        PRIMARY KEY (leg_id)
     );
     """
     with engine.begin() as conn:
