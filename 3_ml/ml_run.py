@@ -109,28 +109,41 @@ def main():
     df_w_pred["delay_predicted"] = y_pred
 
     create_sql = """
-    CREATE TABLE IF NOT EXISTS public.ml_delays (
+     TABLE IF NOT EXISTS public.ml_delays (
         leg_id UUID,
         flight_id VARCHAR(50),
         delay_predicted INTEGER,
-        PRIMARY KEY (leg_id)
+        PRIMARY KEY (leg_id) 
     );
     """
-    with engine.begin() as conn:
+    #with engine.begin() as conn:
         #conn.execute(text("DROP TABLE IF EXISTS public.ml_delays CASCADE"))
-        conn.execute(text(create_sql))
+    #    conn.execute(text(create_sql))
 
     cols_out = ["leg_id", "flight_id", "delay_predicted"]
-    df_w_pred[cols_out].to_sql(
-        "ml_delays",
-        engine,
-        schema="public",
-        if_exists="append",
-        index=False,
-        method="multi",
-        chunksize=1000,
-    )
+    #df_w_pred[cols_out].to_sql(
+     #   "ml_delays",
+     #   engine,
+     #   schema="public",
+     #   if_exists="append",
+     #   index=False,
+     #   method="multi",
+    #    chunksize=1000,
+    #)
 
+    values = ", ".join([f"('{row['leg_id']}', '{row['flight_id']}', {row['delay_predicted']})" for _, row in df_w_pred.iterrows()])
+    query = f"""
+    INSERT INTO public.ml_delays (leg_id, flight_id, delay_predicted)
+    VALUES {values}
+    ON CONFLICT (leg_id)
+    DO UPDATE SET
+        flight_id = EXCLUDED.flight_id,
+        delay_predicted = EXCLUDED.delay_predicted;
+    """
+
+    with engine.connect() as conn:
+        conn.execute(text(query))
+        conn.commit()
 
     print(f"Prédictions écrites dans public.ml_delays ({len(df_w_pred)} lignes).")
 
