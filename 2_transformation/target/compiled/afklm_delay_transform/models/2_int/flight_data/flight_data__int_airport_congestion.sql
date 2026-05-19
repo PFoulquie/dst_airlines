@@ -4,15 +4,15 @@
 -- Un aéroport très chargé ce jour-là est plus susceptible de générer des retards en cascade.
 -- FULL OUTER JOIN departures/arrivals : capture les aéroports qui ne figurent que d'un seul côté.
 -- Grain : 1 ligne par (airportCode, flightScheduleDate).
-{{ config(schema='int', materialized='view') }}
+
 
 with legs_with_date as (
     select
         l.departure_airport_code,
         l.arrival_airport_code,
         f.flight_schedule_date
-    from {{ ref('flight_data__source_operational_flight_legs') }} l
-    join {{ ref('flight_data__source_operational_flights') }} f on l.flight_id = f.id
+    from "postgres"."silver_raw"."flight_data__source_operational_flight_legs" l
+    join "postgres"."silver_raw"."flight_data__source_operational_flights" f on l.flight_id = f.id
 ),
 departures as (
     select

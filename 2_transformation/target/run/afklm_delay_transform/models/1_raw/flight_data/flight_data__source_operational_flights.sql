@@ -12,13 +12,12 @@
 
 select
     id,
-    flightNumber::int as flightNumber,
-    flightScheduleDate::date as flightScheduleDate,
-    airlineCode,
-    airlineName,
+    flight_number,
+    flight_schedule_date,
+    airline_code,
+    airline_name,
     haul,
-    route,
-    flightStatusPublic,
-    fetchedAt::timestamptz as fetchedAt
+    flight_status_public,
+    fetched_at
 from "postgres"."public"."operational_flights"
   );

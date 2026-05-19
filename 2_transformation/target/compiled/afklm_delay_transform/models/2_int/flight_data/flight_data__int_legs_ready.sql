@@ -7,7 +7,7 @@
 -- is_delayed = true si l'un des trois indicateurs de retard atteint 15 minutes ou plus
 --              (seuil standard IATA de retard significatif).
 -- Grain : 1 ligne par leg. Alimentation directe de fct_flight_legs (mart).
-{{ config(schema='int', materialized='view') }}
+
 
 with base as (
     select
@@ -33,20 +33,19 @@ with base as (
         d.scheduled_flight_duration,
         d.aircraft_code,
         d.aircraft_name,
-        d.departure_city_code,
-        d.departure_city_name,
-        d.departure_country_code,
-        d.departure_country_name,
-        d.arrival_city_code,
-        d.arrival_city_name,
-        d.arrival_country_code,
-        d.arrival_country_name,
-        {{ parse_iso8601_duration_minutes('d.scheduled_flight_duration') }} as scheduled_flight_duration_minutes,
+        
+-- Parse ISO8601 duration (PT2H25M, PT15M) to minutes
+COALESCE(
+  (regexp_match(d.scheduled_flight_duration, '(\d+)H'))[1]::int, 0
+) * 60 + COALESCE(
+  (regexp_match(d.scheduled_flight_duration, '(\d+)M'))[1]::int, 0
+)
+ as scheduled_flight_duration_minutes,
         extract(dow from d.scheduled_departure)::int as departure_weekday,
         extract(month from d.scheduled_departure)::int as departure_month,
         extract(hour from d.scheduled_departure)::int as departure_hour,
         extract(day from d.scheduled_departure)::int as departure_monthday
-    from {{ ref('flight_data__int_delays_leg') }} d
+    from "postgres"."silver_int"."flight_data__int_delays_leg" d
 ),
 with_dep_congestion as (
     select
@@ -54,7 +53,7 @@ with_dep_congestion as (
         coalesce(dep.nb_flight_departing, 0) as nb_flight_departing_departure_airport,
         coalesce(dep.nb_flight_arriving, 0) as nb_flight_arriving_departure_airport
     from base b
-    left join {{ ref('flight_data__int_airport_congestion') }} dep
+    left join "postgres"."silver_int"."flight_data__int_airport_congestion" dep
         on b.departure_airport_code = dep.airport_code
         and b.flight_schedule_date = dep.flight_schedule_date
 ),
@@ -64,7 +63,7 @@ with_arr_congestion as (
         coalesce(arr.nb_flight_departing, 0) as nb_flight_departing_arrival_airport,
         coalesce(arr.nb_flight_arriving, 0) as nb_flight_arriving_arrival_airport
     from with_dep_congestion w
-    left join {{ ref('flight_data__int_airport_congestion') }} arr
+    left join "postgres"."silver_int"."flight_data__int_airport_congestion" arr
         on w.arrival_airport_code = arr.airport_code
         and w.flight_schedule_date = arr.flight_schedule_date
 ),
@@ -73,7 +72,7 @@ with_delay_airport as (
         a.*,
         coalesce(dap.departure_airport_delayed_share, 0) as departure_airport_delayed_share
     from with_arr_congestion a
-    left join {{ ref('flight_data__int_airport_delays') }} dap
+    left join "postgres"."silver_int"."flight_data__int_airport_delays" dap
         on a.departure_airport_code = dap.departure_airport_code
         --and a.flight_schedule_date = dap.flight_schedule_date
         and cast(a.flight_schedule_date as DATE) = cast(dap.flight_schedule_date as DATE)
@@ -84,7 +83,7 @@ with_delay_aircraft as (
         wdap.*,
         coalesce(dac.aircraft_delayed_share, 0) as aircraft_delayed_share
     from with_delay_airport wdap
-    left join {{ ref('flight_data__int_aircraft_delays') }} dac
+    left join "postgres"."silver_int"."flight_data__int_aircraft_delays" dac
         on wdap.aircraft_code = dac.aircraft_code
         and cast(wdap.flight_schedule_date as DATE) = cast(dac.flight_schedule_date as DATE)
 ),
@@ -93,7 +92,7 @@ with_delay_airline as (
         wdac.*,
         coalesce(dal.airline_delayed_share, 0) as airline_delayed_share
     from with_delay_aircraft wdac
-    left join {{ ref('flight_data__int_airline_delays') }} dal
+    left join "postgres"."silver_int"."flight_data__int_airline_delays" dal
         on wdac.airline_code = dal.airline_code
         and cast(wdac.flight_schedule_date as DATE) = cast(dal.flight_schedule_date as DATE)
 )
@@ -120,14 +119,6 @@ select
     scheduled_flight_duration_minutes,
     aircraft_code,
     aircraft_name,
-    departure_city_code,
-    departure_city_name,
-    departure_country_code,
-    departure_country_name,
-    arrival_city_code,
-    arrival_city_name,
-    arrival_country_code,
-    arrival_country_name,
     departure_weekday,
     departure_month,
     departure_hour,

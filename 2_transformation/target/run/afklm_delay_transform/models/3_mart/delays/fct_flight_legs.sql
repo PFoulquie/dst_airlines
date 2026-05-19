@@ -1,11 +1,21 @@
--- mart.fct_flight_legs
+
+  
+    
+
+  create  table "postgres"."silver_mart"."fct_flight_legs__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- mart.fct_flight_legs
 -- Table de faits centrale de la pipeline. Consommée par ml_score.py et Metabase.
 -- Contient toutes les features ML prêtes à l'emploi : temporelles, congestion, retards, cible (is_delayed).
 -- Aucune transformation : toute la logique métier est dans les couches int.
 -- Les colonnes airport/airline/date sont renommées en *_key pour indiquer leur rôle de clé étrangère
 -- vers les dimensions (dim_airlines, dim_airports, dim_date).
 -- Grain : 1 ligne par leg (tronçon physique d'un vol).
-{{ config(schema='mart', materialized='table') }}
+
 select
     leg_id,
     flight_id,
@@ -41,4 +51,6 @@ select
     aircraft_delayed_share,
     airline_delayed_share,
     is_delayed
-from {{ ref('flight_data__int_legs_ready') }}
+from "postgres"."silver_int"."flight_data__int_legs_ready"
+  );
+  

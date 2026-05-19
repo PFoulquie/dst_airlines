@@ -1,4 +1,9 @@
--- int.flight_data__int_delays_leg
+
+  create view "postgres"."silver_int"."flight_data__int_delays_leg__dbt_tmp"
+    
+    
+  as (
+    -- int.flight_data__int_delays_leg
 -- Assemble les trois sources raw en une entité cohérente par leg.
 -- Transformations clés :
 --   - JOIN flights → legs : enrichit chaque tronçon avec les infos vol (numéro, date, compagnie).
@@ -6,7 +11,7 @@
 --   - Agrégation delays : plusieurs codes retard par leg → 1 ligne (somme des durées, premier code).
 --   - Calcul des écarts : departure/arrival_delay_minutes depuis les timestamps réels vs prévus.
 -- Grain : 1 ligne par leg.
-{{ config(schema='int', materialized='view') }}
+
 
 with legs as (
     select
@@ -27,28 +32,27 @@ with legs as (
         l.arrival_airport_code,
         l.departure_airport_name,
         l.arrival_airport_name,
-        l.departure_city_code,
-        l.departure_city_name,
-        l.departure_country_code,
-        l.departure_country_name,
-        l.arrival_city_code,
-        l.arrival_city_name,
-        l.arrival_country_code,
-        l.arrival_country_name,
         l.published_status,
         l.leg_order,
         l.cancelled,
         round(extract(epoch from (l.actual_departure - l.scheduled_departure)) / 60)::int as departure_delay_minutes,
         round(extract(epoch from (l.actual_arrival - l.scheduled_arrival)) / 60)::int as arrival_delay_minutes
-    from {{ ref('flight_data__source_operational_flight_legs') }} l
-    join {{ ref('flight_data__source_operational_flights') }} f on l.flight_id = f.id
+    from "postgres"."silver_raw"."flight_data__source_operational_flight_legs" l
+    join "postgres"."silver_raw"."flight_data__source_operational_flights" f on l.flight_id = f.id
 ),
 delay_parsed as (
     select
         flight_leg_id,
         delay_code,
-        {{ parse_iso8601_duration_minutes('delay_duration') }} as delay_min
-    from {{ ref('flight_data__source_operational_flight_delays') }}
+        
+-- Parse ISO8601 duration (PT2H25M, PT15M) to minutes
+COALESCE(
+  (regexp_match(delay_duration, '(\d+)H'))[1]::int, 0
+) * 60 + COALESCE(
+  (regexp_match(delay_duration, '(\d+)M'))[1]::int, 0
+)
+ as delay_min
+    from "postgres"."silver_raw"."flight_data__source_operational_flight_delays"
     where delay_duration is not null
 ),
 delay_agg as (
@@ -82,15 +86,8 @@ select
     legs.aircraft_name,
     legs.departure_delay_minutes,
     legs.arrival_delay_minutes,
-    legs.departure_city_code,
-    legs.departure_city_name,
-    legs.departure_country_code,
-    legs.departure_country_name,
-    legs.arrival_city_code,
-    legs.arrival_city_name,
-    legs.arrival_country_code,
-    legs.arrival_country_name
     delay_agg.delay_code,
     delay_agg.delay_duration_minutes
 from legs
 left join delay_agg on legs.leg_id = delay_agg.flight_leg_id
+  );

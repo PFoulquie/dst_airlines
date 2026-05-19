@@ -12,9 +12,9 @@
 
 select
     id,
-    flightLegId,
-    delayCode,
-    delayDuration,
-    delayReason
+    flight_leg_id,
+    delay_code,
+    delay_duration
+    --delay_reason
 from "postgres"."public"."operational_flight_delays"
   );

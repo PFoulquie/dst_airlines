@@ -9,6 +9,6 @@ select
     id,
     flight_leg_id,
     delay_code,
-    delay_duration,
-    delay_reason
+    delay_duration
+    --delay_reason
 from {{ source('flight_data', 'operational_flight_delays') }}

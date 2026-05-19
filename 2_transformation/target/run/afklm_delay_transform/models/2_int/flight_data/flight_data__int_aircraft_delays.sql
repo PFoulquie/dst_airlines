@@ -1,9 +1,14 @@
--- int.flight_data__int_aircraft_delays
+
+  create view "postgres"."silver_int"."flight_data__int_aircraft_delays__dbt_tmp"
+    
+    
+  as (
+    -- int.flight_data__int_aircraft_delays
 -- Feature ML : Proportion de retards sur les sept derniers jours pour chaque appareil 
 -- Calcule la proportion de vols en retard sur les sept jours précédant une date pour chaque modalité d'appareil
 -- Est-ce que ce type d'appareil a tendance à provoquer du retard ? 
 -- 1 ligne par (aircraftCode, flightScheduleDate).
-{{ config(schema='int', materialized='view') }}
+
 
 with flights_within_7_days as (
     select
@@ -11,9 +16,9 @@ with flights_within_7_days as (
         d.delay_duration,
         l.cancelled,
         cast(f.flight_schedule_date as DATE) 
-    from {{ ref('flight_data__source_operational_flight_legs') }} l
-    join {{ ref('flight_data__source_operational_flights') }} f on l.flight_id = f.id
-    join {{ ref('flight_data__source_operational_flight_delays') }} d on l.id = d.flight_leg_id
+    from "postgres"."silver_raw"."flight_data__source_operational_flight_legs" l
+    join "postgres"."silver_raw"."flight_data__source_operational_flights" f on l.flight_id = f.id
+    join "postgres"."silver_raw"."flight_data__source_operational_flight_delays" d on l.id = d.flight_leg_id
     where l.cancelled = 'N'
 )
 select 
@@ -27,6 +32,4 @@ FROM flights_within_7_days fsd left join flights_within_7_days fsd2
         GROUP BY
     fsd.aircraft_code,
     fsd.flight_schedule_date
-
-
-    
+  );

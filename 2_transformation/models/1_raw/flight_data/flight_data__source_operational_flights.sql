@@ -12,7 +12,6 @@ select
     airline_code,
     airline_name,
     haul,
-    route,
     flight_status_public,
     fetched_at
 from {{ source('flight_data', 'operational_flights') }}

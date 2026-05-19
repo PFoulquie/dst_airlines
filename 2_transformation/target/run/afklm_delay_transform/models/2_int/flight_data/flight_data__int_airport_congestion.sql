@@ -1,18 +1,23 @@
--- int.flight_data__int_airport_congestion
+
+  create view "postgres"."silver_int"."flight_data__int_airport_congestion__dbt_tmp"
+    
+    
+  as (
+    -- int.flight_data__int_airport_congestion
 -- Feature ML : proxy de congestion aéroportuaire.
 -- Calcule, pour chaque aéroport et chaque jour, le nombre de vols au départ et à l'arrivée.
 -- Un aéroport très chargé ce jour-là est plus susceptible de générer des retards en cascade.
 -- FULL OUTER JOIN departures/arrivals : capture les aéroports qui ne figurent que d'un seul côté.
 -- Grain : 1 ligne par (airportCode, flightScheduleDate).
-{{ config(schema='int', materialized='view') }}
+
 
 with legs_with_date as (
     select
         l.departure_airport_code,
         l.arrival_airport_code,
         f.flight_schedule_date
-    from {{ ref('flight_data__source_operational_flight_legs') }} l
-    join {{ ref('flight_data__source_operational_flights') }} f on l.flight_id = f.id
+    from "postgres"."silver_raw"."flight_data__source_operational_flight_legs" l
+    join "postgres"."silver_raw"."flight_data__source_operational_flights" f on l.flight_id = f.id
 ),
 departures as (
     select
@@ -41,3 +46,4 @@ from departures d
 full outer join arrivals a
     on d.airport_code = a.airport_code
     and d.flight_schedule_date = a.flight_schedule_date
+  );
